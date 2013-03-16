@@ -1,4 +1,6 @@
 LTRequest
 =========
 
-Lightweight network request and model classes for typical client iOS App.
+よくある RESTful API ベース Web サービスのiOSクライアントを作るためのひな形
+
+続く...
