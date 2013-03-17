@@ -123,6 +123,7 @@
     if (indexPath.section == 0) {
         Tweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
         Timeline* timeline = tweet.byUser.usersTimeline;
+        //Timeline* home = tweet.byUser.homeTimeline;
         [[self.navigationController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"timeline" sender:timeline];
     } else {
         if (!_loadingMore) {

@@ -100,6 +100,7 @@
 		5272E6BA16F4688A00AAC03E /* APIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIResponse.m; sourceTree = "<group>"; };
 		5272E6BC16F4811700AAC03E /* LTAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIResponse.h; sourceTree = "<group>"; };
 		5272E6BD16F4811700AAC03E /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
+		529CEB2716F605C200BDA48A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 		5272E64C16F4489D00AAC03E = {
 			isa = PBXGroup;
 			children = (
+				529CEB2716F605C200BDA48A /* README.md */,
 				5272E69E16F4493400AAC03E /* Library */,
 				5272E69F16F4493400AAC03E /* Models */,
 				5272E65E16F4489D00AAC03E /* LTTwDemo */,
