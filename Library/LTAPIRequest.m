@@ -9,6 +9,13 @@
 #import "LTAPIRequest.h"
 #import "LTAPIResponse.h"
 
+#if LTAPIRequestDebug
+#warning LTAPIRequestDebug is enabled
+#define LTAPIRequestDebugLog NSLog
+#else
+#define LTAPIRequestDebugLog(...)  { do {} while (0);}
+#endif
+
 static int networkCount = 0;
 
 @interface LTAPIRequest ()
@@ -32,7 +39,16 @@ static int networkCount = 0;
 
 -(void)sendRequestWithCallback:(LTAPIRequestCallback)callback
 {
-    [[self class] lt_sendAsynchronousRequest:[self prepareRequest] queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
+    NSURLRequest* request = [self prepareRequest];
+#if LTAPIRequestDebug
+    NSDictionary* methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
+                              @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
+    LTAPIRequestDebugLog(@"%@ %@ (%@)\n%@\n%@", methods[@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request);
+#endif
+    
+    [[self class] beginNetworkConnection];
+    [[self class] lt_sendAsynchronousRequest:request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
+        [[self class] endNetworkConnection];
         LTAPIResponse* res = [[[[self class] APIResponseClass] alloc] init];
         res.responseData = responseData;
         res.response = urlResponse;
@@ -55,7 +71,7 @@ static int networkCount = 0;
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"JSON: %@", res.json);
+                    LTAPIRequestDebugLog(@"JSON: %@", res.json);
                     callback(res);
                 });
             }

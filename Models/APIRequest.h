@@ -17,10 +17,12 @@ typedef void(^RequestUserImageCallback)(UIImage* image, NSString* imageURL);
 
 @interface APIRequest : LTAPIRequest
 
+// Callbackの型は `RequestCallback` なのでオーバーライド
 - (void)sendRequestWithCallback:(RequestCallback)callback;
 
 + (ACAccountStore*)accountStore;
 
+// アイコンダウンロードのためのユーティリティメソッド
 + (void)downloadUserImageWithURL:(NSString*)url callback:(RequestUserImageCallback)callback;
 
 

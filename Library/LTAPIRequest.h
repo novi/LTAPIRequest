@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define LTAPIRequestDebug (1)
+
 typedef NS_ENUM(NSUInteger, LTAPIRequestMethod) {
     LTAPIRequestMethodInvalid = 0,
     LTAPIRequestMethodGET = 1,
@@ -32,12 +34,14 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 
 - (NSMutableURLRequest*)prepareRequest;
 
+// ユーティリティメソッド
 // handlerはqueueのスレッドで呼ばれる
 + (void)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue*) queue completionHandler:(void (^)(NSURLResponse*, NSData*, NSError*)) handler;
 
-+ (NSOperationQueue*)imageRequestQueue;
-+ (NSOperationQueue*)APIRequestQueue;
-+ (void)beginNetworkConnection;
++ (NSOperationQueue*)imageRequestQueue; // 画像ダウンロード用 Queue
++ (NSOperationQueue*)APIRequestQueue; // APIリクエスト用 Queue
+
++ (void)beginNetworkConnection; // ネットワークインジケータ制御
 + (void)endNetworkConnection;
 
 @end

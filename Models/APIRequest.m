@@ -36,7 +36,6 @@
     req.account = [User me].account;
     
     NSMutableURLRequest* reqs = [[req preparedURLRequest] mutableCopy];
-    NSLog(@"%@: %@", reqs, reqs.URL);
     return reqs;
 }
 
@@ -67,6 +66,7 @@
 {
     url = [url copy];
     NSURLRequest* req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
     [self lt_sendAsynchronousRequest:req queue:[self imageRequestQueue] completionHandler:^(NSURLResponse * res, NSData * data, NSError * error) {
         if (!data) {
             dispatch_async(dispatch_get_main_queue(), ^{
