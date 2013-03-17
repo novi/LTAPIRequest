@@ -13,8 +13,8 @@
 
 @interface User ()
 {
-    Timeline* _mainTimeline;
-    Timeline* _mentionTimeline;
+    Timeline* _homeTimeline;
+    Timeline* _usersTimeline;
 }
 @end
 
@@ -26,9 +26,31 @@
     static User* me;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        me = [[self alloc] init];
+        me = [[self alloc] initUser];
     });
     return me;
+}
+
+-(BOOL)isMe
+{
+    return [[[self class] me] isEqual:self];
+}
+
+// 標準のイニシャライザは無効に
+-(id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+// 指定イニシャライザ
+- (id)initUser
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
 }
 
 +(User *)userWithUserID:(NSString *)userID
@@ -41,7 +63,7 @@
     
     User* user = [dict objectForKey:userID];
     if (!user) {
-        user = [[self alloc] init];
+        user = [[self alloc] initUser];
         [dict setObject:user forKey:userID];
     }
     return user;
@@ -67,12 +89,24 @@
 
 #pragma mark - Timelines
 
--(Timeline *)mainTimeline
+-(Timeline *)homeTimeline
 {
-    if (!_mainTimeline) {
-        _mainTimeline = [[Timeline alloc] initWithType:TimelineTypeMain user:self];
+    if (!self.isMe) {
+        [[NSException exceptionWithName:NSGenericException reason:@"other users home timeline is not available." userInfo:nil] raise];
+        return nil;
     }
-    return _mainTimeline;
+    if (!_homeTimeline) {
+        _homeTimeline = [[Timeline alloc] initWithType:TimelineTypeHome user:self];
+    }
+    return _homeTimeline;
+}
+
+-(Timeline *)usersTimeline
+{
+    if (!_usersTimeline) {
+        _usersTimeline = [[Timeline alloc] initWithType:TimelineTypeUsers user:self];
+    }
+    return _usersTimeline;
 }
 
 #pragma mark - Attributes

@@ -49,13 +49,11 @@
 {
     NSString* path;
     NSMutableDictionary* params = [(_tweets.count ? @{@"since_id": [[_tweets objectAtIndex:0] ID]} : @{}) mutableCopy];
-    if (self.type == TimelineTypeMain) {
-        if ([[User me] isEqual:self.user]) {
-            path = @"/statuses/home_timeline";
-        } else {
-            path = @"/statuses/user_timeline";
-            params[@"user_id"] = self.user.ID;
-        }
+    if (self.type == TimelineTypeHome) {
+        path = @"/statuses/home_timeline";
+    } else if (self.type == TimelineTypeUsers) {
+        path = @"/statuses/user_timeline";
+        params[@"user_id"] = self.user.ID;
     } else if (self.type == TimelineTypeSearch) {
         path = @"/search/tweets";
         params[@"q"] = self.query;
@@ -86,13 +84,11 @@
 {
     NSString* path;
     NSMutableDictionary* params = [(_tweets.count ? @{@"max_id": [[_tweets lastObject] ID]} : @{}) mutableCopy]; // 正しくは max_id は tweets最後のTweet id + 1
-    if (self.type == TimelineTypeMain) {
-        if ([[User me] isEqual:self.user]) {
-            path = @"/statuses/home_timeline";
-        } else {
-            path = @"/statuses/user_timeline";
-            params[@"user_id"] = self.user.ID;
-        }
+    if (self.type == TimelineTypeHome) {
+        path = @"/statuses/home_timeline";
+    } else if (self.type == TimelineTypeUsers) {
+        path = @"/statuses/user_timeline";
+        params[@"user_id"] = self.user.ID;
     } else if (self.type == TimelineTypeSearch) {
         path = @"/search/tweets";
         params[@"q"] = self.query;
@@ -125,8 +121,10 @@
 
 -(NSString *)localizedTitle
 {
-    if (self.type == TimelineTypeMain) {
-        return [NSString stringWithFormat:@"Timeline %@", _user.name];
+    if (self.type == TimelineTypeHome) {
+        return [NSString stringWithFormat:@"Home Timeline (%@)", _user.name];
+    } else if (self.type == TimelineTypeSearch) {
+        return [NSString stringWithFormat:@"%@'s Timeline", self.query];
     } else if (self.type == TimelineTypeSearch) {
         return [NSString stringWithFormat:@"Search %@", self.query];
     }

@@ -13,6 +13,7 @@
 
 -(BOOL)success
 {
+    // 成功時か失敗かの判定をここに記述する
     if (self.error || !self.responseData) {
         return NO;
     }
@@ -24,6 +25,8 @@
 
 - (void)showErrorAlert
 {
+    // エラー時にアラートを出す
+    // Main Queue 以外から呼ばれる可能性があるので Main Queue で実行する
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.error) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:self.error.localizedDescription message:self.error.localizedFailureReason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -37,6 +40,8 @@
 
 -(NSArray *)statuses
 {
+    // API によってツイート一覧(statuses)のキーが違うので差違をここで吸収する
+    
     if ([self.request.path hasPrefix:@"/search"]) {
         return [self.json objectForKey:@"statuses"];
     }

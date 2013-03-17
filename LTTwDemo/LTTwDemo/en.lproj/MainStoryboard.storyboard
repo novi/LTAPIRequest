@@ -123,7 +123,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Twitter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-E9-7U5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="node.js lang:ja" borderStyle="roundedRect" placeholder="Search Twitter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-E9-7U5">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -141,6 +141,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="x5z-E9-7U5" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="0RJ-in-qAk"/>
                             <constraint firstItem="hTW-jk-yhm" firstAttribute="top" secondItem="17" secondAttribute="top" constant="85" id="5If-0Q-xUe"/>
@@ -148,14 +149,23 @@
                             <constraint firstItem="x5z-E9-7U5" firstAttribute="top" secondItem="17" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ZlQ-Dd-9GZ"/>
                             <constraint firstItem="hTW-jk-yhm" firstAttribute="centerX" secondItem="x5z-E9-7U5" secondAttribute="centerX" type="default" id="wni-7O-2Nu"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5Ei-PO-ZUf" appends="YES" id="iSo-19-OPB"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="6"/>
                     <navigationItem key="navigationItem" title="Twitter Search" id="x4F-Ke-Ba7"/>
                     <connections>
+                        <outlet property="searchField" destination="x5z-E9-7U5" id="UbG-aO-vnH"/>
                         <segue destination="Gjc-JS-g2z" kind="push" identifier="timeline" id="HEh-T4-UzI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5Ei-PO-ZUf">
+                    <connections>
+                        <action selector="viewTapped:" destination="3" id="YQR-Vs-qiN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1051" y="-86"/>
         </scene>
@@ -198,6 +208,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
                 <relationship kind="action" name="searchFieldEditEnded:" candidateClass="UITextField"/>
+                <relationship kind="action" name="viewTapped:"/>
+                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="TimelineViewController" superclassName="UITableViewController">

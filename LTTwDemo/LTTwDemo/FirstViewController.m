@@ -36,7 +36,7 @@
                 
                 [me refreshUserInfoWithCallback:^(BOOL success) {
                     if (success) {
-                        [self performSegueWithIdentifier:@"timeline" sender:me.mainTimeline];
+                        [self performSegueWithIdentifier:@"timeline" sender:me.homeTimeline];
                     }
                 }];
             });

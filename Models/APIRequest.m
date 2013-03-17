@@ -26,7 +26,7 @@
 -(NSMutableURLRequest *)prepareRequest
 {
     // 送信するリクエストを作成
-    // TwitterはiOS標準のSLRequestでNSURLRequestを生成できる
+    // Twitter は iOS 標準の SLRequest で NSURLRequest を生成できる
     
     SLRequestMethod method;
     if (self.method == LTAPIRequestMethodGET) {
@@ -44,6 +44,8 @@
 
 +(Class)APIResponseClass
 {
+    // API のレスポンスに使用するクラスを返す
+    // アプリで作成した `APIResponse` を使用
     return [APIResponse class];
 }
 

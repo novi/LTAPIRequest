@@ -11,5 +11,7 @@
 @interface SecondViewController : UIViewController
 
 - (IBAction)searchFieldEditEnded:(UITextField *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+- (IBAction)viewTapped:(id)sender;
 
 @end

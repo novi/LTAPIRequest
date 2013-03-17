@@ -21,6 +21,12 @@
     [super viewDidLoad];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.searchField becomeFirstResponder];
+}
+
 - (IBAction)searchFieldEditEnded:(UITextField *)sender
 {
     [sender resignFirstResponder];
@@ -36,4 +42,8 @@
     }
 }
 
+- (IBAction)viewTapped:(id)sender
+{
+    [self.searchField resignFirstResponder];
+}
 @end

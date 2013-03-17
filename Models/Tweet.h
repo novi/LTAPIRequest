@@ -11,11 +11,11 @@
 @class Timeline, User;
 @interface Tweet : LTModel
 
-@property (nonatomic, readonly, weak) Timeline* timeline; // get associated timeline
+@property (nonatomic, readonly, weak) Timeline* timeline; // このツイートが含まれる Timeline オブジェクト (親)
 
 // Attributes
-@property (nonatomic, readonly, copy) NSString* text;
-@property (nonatomic, readonly, weak) User* byUser;
+@property (nonatomic, readonly, copy) NSString* text; // ツイート
+@property (nonatomic, readonly, weak) User* byUser; // ツイートしたユーザー
 //@property (nonatomic, readonly, weak) User* originalUser;
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //

@@ -9,7 +9,8 @@
 #import "LTModel.h"
 
 typedef NS_ENUM(NSUInteger, TimelineType) {
-    TimelineTypeMain = 0,
+    TimelineTypeHome,
+    TimelineTypeUsers,
     TimelineTypeSearch,
 };
 
@@ -19,11 +20,11 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 @interface Timeline : LTModel
 
 @property (nonatomic, readonly) TimelineType type;
-@property (nonatomic, readonly, weak) User* user;
-@property (nonatomic, readonly, copy) NSString* localizedTitle;
-@property (nonatomic, readonly, copy) NSArray* tweets; // Tweet
+@property (nonatomic, readonly, weak) User* user; // この Timeline の User (親)
+@property (nonatomic, readonly, copy) NSString* localizedTitle; // NavigationBar に表示するタイトルなど
+@property (nonatomic, readonly, copy) NSArray* tweets; // Tweet 一覧
 
-@property (nonatomic, readonly, copy) NSString* query;
+@property (nonatomic, readonly, copy) NSString* query; // 検索語 (self.type == TimelineTypeSearch 時)
 
 - (id)initSearchTimelineWithQuery:(NSString*)query;
 

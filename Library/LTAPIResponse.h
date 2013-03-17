@@ -15,13 +15,15 @@
 @property (nonatomic, readonly, copy) id json;
 
 
-// used by subclass
+// サブクラスから参照する (セット禁止)
 @property (nonatomic, readonly) NSHTTPURLResponse* HTTPResponse;
 @property (nonatomic) NSData* responseData;
 @property (nonatomic) NSURLResponse* response;
 @property (nonatomic) NSError* error;
 @property (nonatomic) LTAPIRequest* request;
-- (void)showErrorAlert; // thread safe
+
+// APIリクエストのエラー時に呼ばれる
+- (void)showErrorAlert; // thread safe に実装する
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 - (NSError*)parseJSON; // if retuns nil, success
