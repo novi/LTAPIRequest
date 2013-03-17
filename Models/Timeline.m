@@ -60,6 +60,7 @@
             [_tweets insertObject:tweet atIndex:0];
         }
         callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [response.json count])]);
+        
     }];
     
 }
@@ -81,11 +82,12 @@
             callback(NO, nil);
             return;
         }
+        NSUInteger oldCount = _tweets.count;
         for (NSDictionary* dict in response.json) {
             Tweet* tweet = [[Tweet alloc] initWithData:dict timeline:self];
             [_tweets addObject:tweet];
         }
-        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [response.json count])]);
+        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(oldCount, [response.json count])]);
     }];
 }
 

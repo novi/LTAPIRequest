@@ -43,13 +43,22 @@
     [self updateViews];
 }
 
+- (NSArray*)indexPathsFromRowIndexSet:(NSIndexSet*)indexset
+{
+    NSMutableArray* indexPaths = [NSMutableArray arrayWithCapacity:indexset.count];
+    [indexset enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [indexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+    }];
+    return indexPaths;
+}
+
 - (void)refresh:(UIRefreshControl*)sender
 {
     [sender beginRefreshing];
-    [_timeline refreshWithCallback:^(BOOL success, NSIndexSet *updatedIndexes) {
+    [_timeline refreshWithCallback:^(BOOL success, NSIndexSet *insertedIndexSet) {
         [sender endRefreshing];
         if (success) {
-            [self.tableView reloadData];
+            [self.tableView insertRowsAtIndexPaths:[self indexPathsFromRowIndexSet:insertedIndexSet] withRowAnimation:UITableViewRowAnimationNone];
         }
     }];
 }
@@ -108,10 +117,10 @@
         if (!_loadingMore) {
             _loadingMore = YES;
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
-            [_timeline loadMoreWithCallback:^(BOOL success, NSIndexSet *updatedIndexes) {
+            [_timeline loadMoreWithCallback:^(BOOL success, NSIndexSet *insertedIndexSet) {
                 _loadingMore = NO;
                 if (success) {
-                    [self.tableView reloadData];
+                    [self.tableView insertRowsAtIndexPaths:[self indexPathsFromRowIndexSet:insertedIndexSet] withRowAnimation:UITableViewRowAnimationNone];
                 } else {
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
                 }

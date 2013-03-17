@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, TimelineType) {
     TimelineTypeSearch,
 };
 
-typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* updatedIndexes);
+typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSet);
 
 @class User;
 @interface Timeline : LTModel
