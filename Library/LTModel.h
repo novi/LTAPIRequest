@@ -12,13 +12,20 @@ typedef void(^LTModelGeneralCallback)(BOOL success);
 
 @interface LTModel : NSObject
 
+- (id)init;
 @property (nonatomic, copy, readonly) NSString* ID;
 
+// Model の属性を set/get する, 引数はすべて nil 以外
 - (id)attributeForKey:(NSString*)key;
 - (void)setAttribute:(id)attr forKey:(NSString*)key;
 - (void)replaceAttributesFromDictionary:(NSDictionary*)dict;
 - (void)mergeAttributesFromDictionary:(NSDictionary*)dict;
+- (void)removeAttributeForKey:(NSString*)key;
 - (void)removeAllAttributes;
+
+// 同じIDのModelは同じインスタンスを使用する場合
+- (id)initWithID:(NSString*)ID;
++ (id)modelWithID:(NSString*)ID;
 
 // LTStoreableModel
 // キャッシュ付き

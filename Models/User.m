@@ -26,7 +26,7 @@
     static User* me;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        me = [[self alloc] initUser];
+        me = [[self alloc] initWithID:nil];
     });
     return me;
 }
@@ -44,29 +44,23 @@
 }
 
 // 指定イニシャライザ
-- (id)initUser
+- (id)initWithID:(NSString *)ID
 {
     self = [super init];
     if (self) {
-        
+        if (ID) {
+            [self setAttribute:ID forKey:@"id_str"];
+        }
     }
     return self;
 }
 
 +(User *)userWithUserID:(NSString *)userID
 {
-    static NSMutableDictionary* dict;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dict = [NSMutableDictionary dictionary];
-    });
-    
-    User* user = [dict objectForKey:userID];
-    if (!user) {
-        user = [[self alloc] initUser];
-        [dict setObject:user forKey:userID];
+    if ([[self me].ID isEqualToString:userID]) {
+        return [self me];
     }
-    return user;
+    return [self modelWithID:userID];
 }
 
 #pragma mark - 
