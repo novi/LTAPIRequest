@@ -21,6 +21,14 @@
 
 @implementation Timeline
 
+// 標準のイニシャライザは無効に
+// 外部からインスタンス化できない
+-(id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 - (id)initWithType:(TimelineType)type user:(User *)user
 {
     self = [super init];
@@ -122,9 +130,9 @@
 -(NSString *)localizedTitle
 {
     if (self.type == TimelineTypeHome) {
-        return [NSString stringWithFormat:@"Home Timeline (%@)", _user.name];
-    } else if (self.type == TimelineTypeSearch) {
-        return [NSString stringWithFormat:@"%@'s Timeline", self.query];
+        return [NSString stringWithFormat:@"Home Timeline (%@)", self.user.name];
+    } else if (self.type == TimelineTypeUsers) {
+        return [NSString stringWithFormat:@"%@'s Timeline", self.user.name];
     } else if (self.type == TimelineTypeSearch) {
         return [NSString stringWithFormat:@"Search %@", self.query];
     }

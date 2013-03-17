@@ -37,13 +37,14 @@
 }
 
 // 標準のイニシャライザは無効に
+// 外部からインスタンス化できない
 -(id)init
 {
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
 
-// 指定イニシャライザ
+// 指定イニシャライザ, 同じ ID の User は同じインスタンスを使うためこれが呼ばれる
 - (id)initWithID:(NSString *)ID
 {
     self = [super init];

@@ -26,6 +26,14 @@ static int networkCount = 0;
 
 @implementation LTAPIRequest
 
+// 標準のイニシャライザは無効に
+// 外部からインスタンス化できない
+-(id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 -(id)initWithAPI:(NSString *)path method:(LTAPIRequestMethod)method params:(NSDictionary *)dict
 {
     self = [super init];

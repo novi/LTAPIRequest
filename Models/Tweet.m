@@ -18,6 +18,14 @@
 
 @implementation Tweet
 
+// 標準のイニシャライザは無効に
+// 外部からインスタンス化できない
+-(id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 -(id)initWithData:(NSDictionary *)dict timeline:(Timeline *)timeline
 {
     self = [super init];
