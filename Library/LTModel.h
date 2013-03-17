@@ -14,7 +14,6 @@ typedef void(^LTModelGeneralCallback)(BOOL success);
 
 @property (nonatomic, copy, readonly) NSString* ID;
 
-
 - (id)attributeForKey:(NSString*)key;
 - (void)setAttribute:(id)attr forKey:(NSString*)key;
 - (void)replaceAttributesFromDictionary:(NSDictionary*)dict;

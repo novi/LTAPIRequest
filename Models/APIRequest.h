@@ -13,7 +13,7 @@
 @class APIResponse, User;
 
 typedef void(^RequestCallback)(APIResponse* response);
-typedef void(^RequestUserImageCallback)(UIImage* image);
+typedef void(^RequestUserImageCallback)(UIImage* image, NSString* imageURL);
 
 @interface APIRequest : LTAPIRequest
 
@@ -21,7 +21,7 @@ typedef void(^RequestUserImageCallback)(UIImage* image);
 
 + (ACAccountStore*)accountStore;
 
-+ (void)downloadUserImageWithScreenName:(NSString*)screenName callback:(RequestUserImageCallback)callback;
++ (void)downloadUserImageWithURL:(NSString*)url callback:(RequestUserImageCallback)callback;
 
 
 @end

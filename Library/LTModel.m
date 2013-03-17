@@ -50,7 +50,7 @@
 -(void)setAttribute:(id)attr forKey:(NSString *)key
 {
     if (attr) {
-        [_data setObject:attr forKey:key];
+        [_data setObject:[attr copy] forKey:key];
     } else {
         [_data removeObjectForKey:key];
     }

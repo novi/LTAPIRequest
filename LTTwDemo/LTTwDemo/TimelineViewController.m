@@ -11,6 +11,7 @@
 #import "Tweet.h"
 #import "APIRequest.h"
 #import "User.h"
+#import <objc/runtime.h>
 
 @interface TimelineViewController ()
 {
@@ -96,9 +97,19 @@
         Tweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
         cell.textLabel.text = tweet.text;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@/%@", tweet.ID, tweet.byUser.screenName, tweet.byUser.name];
+        objc_setAssociatedObject(cell, "lttw_image_url", tweet.byUser.profileImageURL, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        [APIRequest downloadUserImageWithURL:tweet.byUser.profileImageURL callback:^(UIImage *image, NSString *imageURL) {
+            NSString* cellURL = objc_getAssociatedObject(cell, "lttw_image_url");
+            if ([cellURL isEqualToString:imageURL]) {
+                cell.imageView.image = image;
+            } else {
+                NSLog(@"%@\n%@", cellURL, imageURL);
+            }
+        }];
     } else {
         cell.textLabel.text = @"Load more...";
         cell.detailTextLabel.text = _loadingMore ? @"loading...." : nil;
+        cell.imageView.image = nil;
     }
     
     return cell;

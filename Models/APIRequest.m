@@ -52,4 +52,31 @@
     return store;
 }
 
+
++(void)downloadUserImageWithURL:(NSString*)url callback:(RequestUserImageCallback)callback
+{
+    url = [url copy];
+    NSURLRequest* req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [self lt_sendAsynchronousRequest:req queue:[self imageRequestQueue] completionHandler:^(NSURLResponse * res, NSData * data, NSError * error) {
+        if (!data) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback(nil, url); // failed
+            });
+            return;
+        }
+        UIImage* image = [UIImage imageWithData:data];
+        if (!image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback(nil, url); // failed
+            });
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(image, url);
+        });
+        return;
+    }];
+}
+
+
 @end

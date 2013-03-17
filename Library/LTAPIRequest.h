@@ -30,6 +30,7 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 
 - (NSMutableURLRequest*)prepareRequest;
 
+// handlerはqueueのスレッドで呼ばれる
 + (void)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue*) queue completionHandler:(void (^)(NSURLResponse*, NSData*, NSError*)) handler;
 
 + (NSOperationQueue*)imageRequestQueue;

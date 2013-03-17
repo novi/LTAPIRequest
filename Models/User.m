@@ -105,4 +105,9 @@
     return [self attributeForKey:@"name"];
 }
 
+-(NSString *)profileImageURL
+{
+    return [self attributeForKey:@"profile_image_url"];
+}
+
 @end
