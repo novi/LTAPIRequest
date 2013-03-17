@@ -10,4 +10,6 @@
 
 @interface SecondViewController : UIViewController
 
+- (IBAction)searchFieldEditEnded:(UITextField *)sender;
+
 @end

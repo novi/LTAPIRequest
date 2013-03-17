@@ -37,6 +37,8 @@ static int networkCount = 0;
         res.responseData = responseData;
         res.response = urlResponse;
         res.error = error;
+        res.request = self;
+        _response = res;
         if (!res.success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [res showErrorAlert];

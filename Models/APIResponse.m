@@ -7,6 +7,7 @@
 //
 
 #import "APIResponse.h"
+#import "APIRequest.h"
 
 @implementation APIResponse
 
@@ -34,6 +35,17 @@
     });
 }
 
+-(NSArray *)statuses
+{
+    if ([self.request.path hasPrefix:@"/search"]) {
+        return [self.json objectForKey:@"statuses"];
+    }
+    return self.json;
+}
 
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self);
+}
 
 @end

@@ -75,14 +75,6 @@
     return _mainTimeline;
 }
 
--(Timeline *)mentionTimeline
-{
-    if (!_mentionTimeline) {
-        _mentionTimeline = [[Timeline alloc] initWithType:TimelineTypeMentions user:self];
-    }
-    return _mentionTimeline;
-}
-
 #pragma mark - Attributes
 
 -(NSString *)description

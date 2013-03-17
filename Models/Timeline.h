@@ -10,7 +10,6 @@
 
 typedef NS_ENUM(NSUInteger, TimelineType) {
     TimelineTypeMain = 0,
-    TimelineTypeMentions,
     TimelineTypeSearch,
 };
 
@@ -25,6 +24,8 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 @property (nonatomic, readonly, copy) NSArray* tweets; // Tweet
 
 @property (nonatomic, readonly, copy) NSString* query;
+
+- (id)initSearchTimelineWithQuery:(NSString*)query;
 
 - (void)refreshWithCallback:(TimelineRefreshCallback)callback;
 - (void)loadMoreWithCallback:(TimelineRefreshCallback)callback;

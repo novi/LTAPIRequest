@@ -8,19 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class LTAPIRequest;
 @interface LTAPIResponse : NSObject
 
 @property (nonatomic, readonly) BOOL success;
 @property (nonatomic, readonly, copy) id json;
 
 
-// +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
+// used by subclass
 @property (nonatomic, readonly) NSHTTPURLResponse* HTTPResponse;
 @property (nonatomic) NSData* responseData;
 @property (nonatomic) NSURLResponse* response;
 @property (nonatomic) NSError* error;
-
-- (NSError*)parseJSON; // if retuns nil, success
+@property (nonatomic) LTAPIRequest* request;
 - (void)showErrorAlert; // thread safe
+
+// +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
+- (NSError*)parseJSON; // if retuns nil, success
 
 @end

@@ -37,16 +37,30 @@
     _query = query;
 }
 
+-(id)initSearchTimelineWithQuery:(NSString *)query
+{
+    typeof(self) obj = [self initWithType:TimelineTypeSearch user:[User me]];
+    [obj setSearchQuery:query];
+    return obj;
+}
+
 
 -(void)refreshWithCallback:(TimelineRefreshCallback)callback
 {
     NSString* path;
     NSMutableDictionary* params = [(_tweets.count ? @{@"since_id": [[_tweets objectAtIndex:0] ID]} : @{}) mutableCopy];
-    if ([[User me] isEqual:_user]) {
-        path = @"/statuses/home_timeline";
+    if (self.type == TimelineTypeMain) {
+        if ([[User me] isEqual:self.user]) {
+            path = @"/statuses/home_timeline";
+        } else {
+            path = @"/statuses/user_timeline";
+            params[@"user_id"] = self.user.ID;
+        }
+    } else if (self.type == TimelineTypeSearch) {
+        path = @"/search/tweets";
+        params[@"q"] = self.query;
     } else {
-        path = @"/statuses/user_timeline";
-        params[@"user_id"] = _user.ID;
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"invalid timeline type" userInfo:nil] raise];
     }
     
     APIRequest* req = [[APIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
@@ -55,12 +69,15 @@
             callback(NO, nil);
             return;
         }
-        for (NSDictionary* dict in [response.json reverseObjectEnumerator]) {
+        for (NSDictionary* dict in [response.statuses reverseObjectEnumerator]) {
             Tweet* tweet = [[Tweet alloc] initWithData:dict timeline:self];
             [_tweets insertObject:tweet atIndex:0];
         }
-        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [response.json count])]);
-        
+        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [response.statuses count])]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [req params];
+            NSLog(@"request will be deallocated");
+        });
     }];
     
 }
@@ -69,11 +86,18 @@
 {
     NSString* path;
     NSMutableDictionary* params = [(_tweets.count ? @{@"max_id": [[_tweets lastObject] ID]} : @{}) mutableCopy]; // 正しくは max_id は tweets最後のTweet id + 1
-    if ([[User me] isEqual:_user]) {
-        path = @"/statuses/home_timeline";
+    if (self.type == TimelineTypeMain) {
+        if ([[User me] isEqual:self.user]) {
+            path = @"/statuses/home_timeline";
+        } else {
+            path = @"/statuses/user_timeline";
+            params[@"user_id"] = self.user.ID;
+        }
+    } else if (self.type == TimelineTypeSearch) {
+        path = @"/search/tweets";
+        params[@"q"] = self.query;
     } else {
-        path = @"/statuses/user_timeline";
-        params[@"user_id"] = _user.ID;
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"invalid timeline type" userInfo:nil] raise];
     }
     
     APIRequest* req = [[APIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
@@ -83,11 +107,11 @@
             return;
         }
         NSUInteger oldCount = _tweets.count;
-        for (NSDictionary* dict in response.json) {
+        for (NSDictionary* dict in response.statuses) {
             Tweet* tweet = [[Tweet alloc] initWithData:dict timeline:self];
             [_tweets addObject:tweet];
         }
-        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(oldCount, [response.json count])]);
+        callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(oldCount, [response.statuses count])]);
     }];
 }
 
@@ -103,9 +127,7 @@
 {
     if (self.type == TimelineTypeMain) {
         return [NSString stringWithFormat:@"Timeline %@", _user.name];
-    } else if (self.type == TimelineTypeMentions) {
-        return [NSString stringWithFormat:@"Mentions %@", _user.name];
-    } else if (self.type == TimelineTypeMain) {
+    } else if (self.type == TimelineTypeSearch) {
         return [NSString stringWithFormat:@"Search %@", self.query];
     }
     return nil;

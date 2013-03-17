@@ -10,6 +10,6 @@
 
 @interface APIResponse : LTAPIResponse
 
-
+@property (nonatomic, readonly, copy) NSArray* statuses;
 
 @end

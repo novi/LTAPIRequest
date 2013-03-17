@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, LTAPIRequestMethod) {
+    LTAPIRequestMethodInvalid = 0,
     LTAPIRequestMethodGET = 1,
     LTAPIRequestMethodPOST,
     LTAPIRequestMethodDELETE,
@@ -24,6 +25,7 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 @property (nonatomic, readonly, copy) NSString* path;
 @property (nonatomic, readonly) LTAPIRequestMethod method;
 @property (nonatomic, readonly, copy) NSDictionary* params;
+@property (nonatomic, readonly, weak) LTAPIResponse* response;
 
 - (void)sendRequestWithCallback:(LTAPIRequestCallback)callback;
 + (Class)APIResponseClass;

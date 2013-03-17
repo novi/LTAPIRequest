@@ -18,12 +18,18 @@
 
 @implementation APIRequest
 
+-(void)sendRequestWithCallback:(RequestCallback)callback
+{
+    [super sendRequestWithCallback:(id)callback];
+}
 
 -(NSMutableURLRequest *)prepareRequest
 {
     SLRequestMethod method;
     if (self.method == LTAPIRequestMethodGET) {
         method = SLRequestMethodGET;
+    } else if (self.method == LTAPIRequestMethodPOST) {
+        NSLog(@"not supported yet");
     }
     
     SLRequest* req = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:method URL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1.1%@.json", self.path]] parameters:self.params];
@@ -39,6 +45,10 @@
     return [APIResponse class];
 }
 
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self);
+}
 
 #pragma mark -
 

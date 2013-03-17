@@ -172,12 +172,8 @@
 				5272E6B316F4583700AAC03E /* TimelineViewController.m */,
 				5272E67316F4489E00AAC03E /* FirstViewController.h */,
 				5272E67416F4489E00AAC03E /* FirstViewController.m */,
-				5272E67616F4489E00AAC03E /* first.png */,
-				5272E67816F4489E00AAC03E /* first@2x.png */,
 				5272E67A16F4489E00AAC03E /* SecondViewController.h */,
 				5272E67B16F4489E00AAC03E /* SecondViewController.m */,
-				5272E67D16F4489E00AAC03E /* second.png */,
-				5272E67F16F4489E00AAC03E /* second@2x.png */,
 				5272E65F16F4489D00AAC03E /* Supporting Files */,
 			);
 			path = LTTwDemo;
@@ -186,6 +182,10 @@
 		5272E65F16F4489D00AAC03E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5272E67616F4489E00AAC03E /* first.png */,
+				5272E67816F4489E00AAC03E /* first@2x.png */,
+				5272E67D16F4489E00AAC03E /* second.png */,
+				5272E67F16F4489E00AAC03E /* second@2x.png */,
 				5272E66016F4489D00AAC03E /* LTTwDemo-Info.plist */,
 				5272E66116F4489D00AAC03E /* InfoPlist.strings */,
 				5272E66416F4489D00AAC03E /* main.m */,

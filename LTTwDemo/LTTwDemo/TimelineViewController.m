@@ -68,7 +68,7 @@
 {
     [super viewWillAppear:animated];
 
-    if (!_timeline.tweets.count) {
+    if (!_timeline.tweets.count && self.refreshControl) {
         [self refresh:nil];
     }
 }

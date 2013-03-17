@@ -12,7 +12,8 @@
 @interface User : LTModel
 
 @property (nonatomic, readonly) Timeline* mainTimeline;
-@property (nonatomic, readonly) Timeline* mentionTimeline;
+//@property (nonatomic, readonly) Timeline* mentionTimeline;
+
 @property (nonatomic, readonly, copy) NSString* screenName;
 @property (nonatomic, readonly, copy) NSString* name;
 @property (nonatomic, readonly, copy) NSString* profileImageURL;

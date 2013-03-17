@@ -7,6 +7,8 @@
 //
 
 #import "SecondViewController.h"
+#import "Timeline.h"
+#import "TimelineViewController.h"
 
 @interface SecondViewController ()
 
@@ -17,13 +19,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)searchFieldEditEnded:(UITextField *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [sender resignFirstResponder];
+    Timeline* timeline = [[Timeline alloc] initSearchTimelineWithQuery:sender.text];
+    [self performSegueWithIdentifier:@"timeline" sender:timeline];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"timeline"]) {
+        TimelineViewController* vc = (id)segue.destinationViewController;
+        vc.timeline = sender;
+    }
 }
 
 @end
