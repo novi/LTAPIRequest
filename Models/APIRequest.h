@@ -20,6 +20,7 @@ typedef void(^RequestUserImageCallback)(UIImage* image, NSString* imageURL);
 // Callbackの型は `RequestCallback` なのでオーバーライド
 - (void)sendRequestWithCallback:(RequestCallback)callback;
 
+// 共通で使用する AccountStore
 + (ACAccountStore*)accountStore;
 
 // アイコンダウンロードのためのユーティリティメソッド

@@ -40,11 +40,7 @@ static int networkCount = 0;
 -(void)sendRequestWithCallback:(LTAPIRequestCallback)callback
 {
     NSURLRequest* request = [self prepareRequest];
-#if LTAPIRequestDebug
-    NSDictionary* methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
-                              @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
-    LTAPIRequestDebugLog(@"%@ %@ (%@)\n%@\n%@", methods[@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request);
-#endif
+    LTAPIRequestDebugLog(@"%@", [self descriptionWithRequest:request]);
     
     [[self class] beginNetworkConnection];
     [[self class] lt_sendAsynchronousRequest:request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
@@ -58,6 +54,7 @@ static int networkCount = 0;
         if (!res.success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [res showErrorAlert];
+                LTAPIRequestDebugLog(@"Request failed: %@", res);
                 callback(res);
             });
             return;
@@ -67,6 +64,7 @@ static int networkCount = 0;
             if (error) {
                 res.error = error;
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    LTAPIRequestDebugLog(@"Parse Error: %@", res);
                     callback(res);
                 });
             } else {
@@ -89,6 +87,13 @@ static int networkCount = 0;
 {
     [[NSException exceptionWithName:NSGenericException reason:@"shoud be overriden in subclass" userInfo:nil] raise];
     return nil;
+}
+
+-(NSString *)descriptionWithRequest:(NSURLRequest*)request
+{
+    NSDictionary* methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
+                              @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
+    return [NSString stringWithFormat:@"%@ %@ (%@)\n%@\n%@", methods[@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request];
 }
 
 #pragma mark -

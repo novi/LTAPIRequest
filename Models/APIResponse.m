@@ -45,7 +45,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc %@", self);
+    NSLog(@"dealloc response %p, request: %p", self, self.request);
 }
 
 @end

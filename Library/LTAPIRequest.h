@@ -29,13 +29,13 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 @property (nonatomic, readonly, copy) NSDictionary* params;
 @property (nonatomic, readonly, weak) LTAPIResponse* response;
 
-- (void)sendRequestWithCallback:(LTAPIRequestCallback)callback;
-+ (Class)APIResponseClass;
-
-- (NSMutableURLRequest*)prepareRequest;
+// サブクラスでオーバーライドする
+- (void)sendRequestWithCallback:(LTAPIRequestCallback)callback; // APIのリクエストを送信
++ (Class)APIResponseClass; // APIResponseのクラス
+- (NSMutableURLRequest*)prepareRequest; // 実際に送信するRequestを作成
 
 // ユーティリティメソッド
-// handlerはqueueのスレッドで呼ばれる
+// (handlerはqueueのスレッドで呼ばれる)
 + (void)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue*) queue completionHandler:(void (^)(NSURLResponse*, NSData*, NSError*)) handler;
 
 + (NSOperationQueue*)imageRequestQueue; // 画像ダウンロード用 Queue

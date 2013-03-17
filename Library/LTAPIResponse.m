@@ -36,4 +36,9 @@
     
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"%d -> %@ (Error: %@, %@)", self.HTTPResponse.statusCode, self.responseData ? [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] : @"<No Response Data>", self.error.localizedDescription, self.error.localizedFailureReason];
+}
+
 @end
