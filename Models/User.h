@@ -11,6 +11,7 @@
 @class Timeline, ACAccount;
 @interface User : LTModel
 
+// ユーザーの持つ Timeline
 @property (nonatomic, readonly) Timeline* homeTimeline; // 自分のみ有効
 @property (nonatomic, readonly) Timeline* usersTimeline;
 //@property (nonatomic, readonly) Timeline* mentionTimeline;
@@ -27,8 +28,10 @@
 
 - (void)refreshUserInfoWithCallback:(LTModelGeneralCallback)callback; // User の情報を取得 (Twitter API GET user/show)
 
+
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 // ViewController や View から見てプライベートなメソッド
+
 // User ID で User を返すメソッド, 同じ User ID は同じインスタンスが返る, 未生成ならばインスタンス化して返す
 + (User*)userWithUserID:(NSString*)userID;
 @property (nonatomic) ACAccount* account;

@@ -27,10 +27,9 @@ typedef void(^LTModelGeneralCallback)(BOOL success);
 - (id)initWithID:(NSString*)ID;
 + (id)modelWithID:(NSString*)ID;
 
-// LTStoreableModel
-// キャッシュ付き
+// TODO: 
+// LTStorableModel, キャッシュ付き
 //- (NSMutableDictionary*)dictionaryRepresentation;
 //- (void)restoreFromDictionaryRepresentation:(NSDictionary*)dict;
-//- (void)setModelID:(NSString*)ID; // self.ID
 
 @end

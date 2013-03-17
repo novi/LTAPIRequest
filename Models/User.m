@@ -86,6 +86,7 @@
 
 -(Timeline *)homeTimeline
 {
+    // 自分のみ
     if (!self.isMe) {
         [[NSException exceptionWithName:NSGenericException reason:@"other users home timeline is not available." userInfo:nil] raise];
         return nil;

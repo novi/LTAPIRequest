@@ -20,7 +20,7 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 @interface Timeline : LTModel
 
 @property (nonatomic, readonly) TimelineType type;
-@property (nonatomic, readonly, weak) User* user; // この Timeline の User (親)
+@property (nonatomic, readonly, weak) User* user; // この Timeline の User (親), 循環参照を避けるため weak
 @property (nonatomic, readonly, copy) NSString* localizedTitle; // NavigationBar に表示するタイトルなど
 @property (nonatomic, readonly, copy) NSArray* tweets; // Tweet 一覧
 
@@ -28,10 +28,14 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 
 - (id)initSearchTimelineWithQuery:(NSString*)query;
 
+// タイムラインを更新
 - (void)refreshWithCallback:(TimelineRefreshCallback)callback;
+
+// 続きを取得 (間は未実装)
 - (void)loadMoreWithCallback:(TimelineRefreshCallback)callback;
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
+// ViewController や View から見てプライベートなメソッド
 - (id)initWithType:(TimelineType)type user:(User*)user;
 - (void)setSearchQuery:(NSString*)query;
 
