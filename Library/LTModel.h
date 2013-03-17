@@ -20,6 +20,8 @@ typedef void(^LTModelGeneralCallback)(BOOL success);
 - (void)mergeAttributesFromDictionary:(NSDictionary*)dict;
 - (void)removeAllAttributes;
 
+// LTStoreableModel
+// キャッシュ付き
 //- (NSMutableDictionary*)dictionaryRepresentation;
 //- (void)restoreFromDictionaryRepresentation:(NSDictionary*)dict;
 //- (void)setModelID:(NSString*)ID; // self.ID

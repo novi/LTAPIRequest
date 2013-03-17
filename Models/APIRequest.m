@@ -39,6 +39,7 @@
     req.account = [User me].account;
     
     NSMutableURLRequest* reqs = [[req preparedURLRequest] mutableCopy];
+    [reqs setTimeoutInterval:20];
     return reqs;
 }
 

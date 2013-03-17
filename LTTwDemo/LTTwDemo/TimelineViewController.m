@@ -126,10 +126,12 @@
         //Timeline* home = tweet.byUser.homeTimeline;
         [[self.navigationController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"timeline" sender:timeline];
     } else {
+        // 2重送信しないためにフラグを立てる
         if (!_loadingMore) {
             _loadingMore = YES;
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
             [_timeline loadMoreWithCallback:^(BOOL success, NSIndexSet *insertedIndexSet) {
+                // リクエストが終わったらフラグを戻す (成功失敗に関わらず)
                 _loadingMore = NO;
                 if (success) {
                     [self.tableView insertRowsAtIndexPaths:[self indexPathsFromRowIndexSet:insertedIndexSet] withRowAnimation:UITableViewRowAnimationNone];
