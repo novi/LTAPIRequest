@@ -18,6 +18,8 @@
 
 @implementation DEAPIRequest
 
+// ----- オーバーライド
+
 -(void)sendRequestWithCallback:(RequestCallback)callback
 {
     [super sendRequestWithCallback:(id)callback];
@@ -50,12 +52,12 @@
     return [DEAPIResponse class];
 }
 
+#pragma mark -
+
 -(void)dealloc
 {
     NSLog(@"dealloc %@", self);
 }
-
-#pragma mark -
 
 +(ACAccountStore *)accountStore
 {

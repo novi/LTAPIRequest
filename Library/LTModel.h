@@ -23,8 +23,9 @@ typedef void(^LTModelGeneralCallback)(BOOL success);
 - (void)removeAttributeForKey:(NSString*)key;
 - (void)removeAllAttributes;
 
-// 同じIDのModelは同じインスタンスを使用する場合
+// 同じIDのModelは同じインスタンスを使用する場合, サブクラスでオーバーライド
 - (id)initWithID:(NSString*)ID;
+// 同じIDのModelは同じインスタンスを返す(まだ無ければ生成)
 + (id)modelWithID:(NSString*)ID;
 
 // TODO: 

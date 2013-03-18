@@ -23,6 +23,7 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 
 @interface LTAPIRequest : NSObject
 
+// イニシャライザ
 - (id)initWithAPI:(NSString*)path method:(LTAPIRequestMethod)method params:(NSDictionary*)dict;
 @property (nonatomic, readonly, copy) NSString* path;
 @property (nonatomic, readonly) LTAPIRequestMethod method;

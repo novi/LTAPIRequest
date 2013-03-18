@@ -11,6 +11,21 @@
 
 @implementation DEAPIResponse
 
+//
+#pragma mark -
+// オーバーライド
+
+-(NSError *)parseJSON
+{
+    NSError* parseError = [super parseJSON];
+    if (!parseError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"json parsed");
+        });
+    }
+    return parseError;
+}
+
 -(BOOL)success
 {
     // 成功時か失敗かの判定をここに記述する
@@ -37,6 +52,8 @@
         }
     });
 }
+
+#pragma mark -
 
 -(NSArray *)statuses
 {

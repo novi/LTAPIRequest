@@ -58,6 +58,7 @@
 
 +(DEUser *)userWithUserID:(NSString *)userID
 {
+    // userIDが自分だったら、[User me] を返す
     if ([[self me].ID isEqualToString:userID]) {
         return [self me];
     }

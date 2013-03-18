@@ -26,6 +26,6 @@
 - (void)showErrorAlert; // thread safe に実装する
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
-- (NSError*)parseJSON; // if retuns nil, success
+- (NSError*)parseJSON; // if retuns nil, success, JSONパース後何かしたい場合はオーバーライドする, パース用の Queue で呼ばれるので注意
 
 @end

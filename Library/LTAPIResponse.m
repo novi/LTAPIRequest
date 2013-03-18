@@ -27,7 +27,7 @@
 
 -(BOOL)success
 {
-    [[NSException exceptionWithName:NSGenericException reason:@"implement in subclass" userInfo:nil] raise];
+    [[NSException exceptionWithName:NSGenericException reason:@"success: should be implemented on subclass" userInfo:nil] raise];
     return NO;
 }
 
