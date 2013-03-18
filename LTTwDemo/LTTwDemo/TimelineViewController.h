@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@class Timeline;
+@class DETimeline;
 @interface TimelineViewController : UITableViewController
 
-
-@property (nonatomic) Timeline* timeline;
+@property (nonatomic) DETimeline* timeline;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import "Timeline.h"
+#import "DETimeline.h"
 #import "TimelineViewController.h"
 
 @interface SecondViewController ()
@@ -30,7 +30,7 @@
 - (IBAction)searchFieldEditEnded:(UITextField *)sender
 {
     [sender resignFirstResponder];
-    Timeline* timeline = [[Timeline alloc] initSearchTimelineWithQuery:sender.text];
+    DETimeline* timeline = [[DETimeline alloc] initSearchTimelineWithQuery:sender.text];
     [self performSegueWithIdentifier:@"timeline" sender:timeline];
 }
 

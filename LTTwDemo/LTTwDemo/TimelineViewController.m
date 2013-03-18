@@ -7,10 +7,10 @@
 //
 
 #import "TimelineViewController.h"
-#import "Timeline.h"
-#import "Tweet.h"
-#import "APIRequest.h"
-#import "User.h"
+#import "DETimeline.h"
+#import "DETweet.h"
+#import "DEAPIRequest.h"
+#import "DEUser.h"
 #import <objc/runtime.h>
 
 @interface TimelineViewController ()
@@ -21,7 +21,7 @@
 
 @implementation TimelineViewController
 
--(void)setTimeline:(Timeline *)timeline
+-(void)setTimeline:(DETimeline *)timeline
 {
     _timeline = timeline;
     [self.tableView reloadData];
@@ -82,6 +82,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // section == 0 がツイートのリスト
+    // section == 1 がLoadMoreボタン
     if (section == 0) {
         return _timeline.tweets.count;
     }
@@ -94,11 +96,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (indexPath.section == 0) {
-        Tweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
+        DETweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
         cell.textLabel.text = tweet.text;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@/%@", tweet.ID, tweet.byUser.screenName, tweet.byUser.name];
         objc_setAssociatedObject(cell, "lttw_image_url", tweet.byUser.profileImageURL, OBJC_ASSOCIATION_COPY_NONATOMIC);
-        [APIRequest downloadUserImageWithURL:tweet.byUser.profileImageURL callback:^(UIImage *image, NSString *imageURL) {
+        [DEAPIRequest downloadUserImageWithURL:tweet.byUser.profileImageURL callback:^(UIImage *image, NSString *imageURL) {
             NSString* cellURL = objc_getAssociatedObject(cell, "lttw_image_url");
             if ([cellURL isEqualToString:imageURL]) {
                 cell.imageView.image = image;
@@ -121,8 +123,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        Tweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
-        Timeline* timeline = tweet.byUser.usersTimeline;
+        DETweet* tweet = [_timeline.tweets objectAtIndex:indexPath.row];
+        DETimeline* timeline = tweet.byUser.usersTimeline;
         //Timeline* home = tweet.byUser.homeTimeline;
         [[self.navigationController.viewControllers objectAtIndex:0] performSegueWithIdentifier:@"timeline" sender:timeline];
     } else {

@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 novi. All rights reserved.
 //
 
-#import "APIResponse.h"
-#import "APIRequest.h"
+#import "DEAPIResponse.h"
+#import "DEAPIRequest.h"
 
-@implementation APIResponse
+@implementation DEAPIResponse
 
 -(BOOL)success
 {

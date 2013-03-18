@@ -8,7 +8,7 @@
 
 #import "LTAPIResponse.h"
 
-@interface APIResponse : LTAPIResponse
+@interface DEAPIResponse : LTAPIResponse
 
 @property (nonatomic, readonly, copy) NSArray* statuses;
 

@@ -6,17 +6,17 @@
 //  Copyright (c) 2013年 novi. All rights reserved.
 //
 
-#import "Tweet.h"
-#import "User.h"
+#import "DETweet.h"
+#import "DEUser.h"
 
-@interface Tweet ()
+@interface DETweet ()
 {
-    __weak Timeline* _timeline;
-    __weak User* _byUser;
+    __weak DETimeline* _timeline;
+    __weak DEUser* _byUser;
 }
 @end
 
-@implementation Tweet
+@implementation DETweet
 
 // 標準のイニシャライザは無効に
 // 外部からインスタンス化できない
@@ -26,7 +26,7 @@
     return nil;
 }
 
--(id)initWithData:(NSDictionary *)dict timeline:(Timeline *)timeline
+-(id)initWithData:(NSDictionary *)dict timeline:(DETimeline *)timeline
 {
     self = [super init];
     if (self) {
@@ -48,10 +48,10 @@
     return [[self attributeForKey:@"text"] copy];
 }
 
--(User *)byUser
+-(DEUser *)byUser
 {
     if (!_byUser) {
-        _byUser = [User userWithUserID:[[self attributeForKey:@"user"] objectForKey:@"id_str"]];
+        _byUser = [DEUser userWithUserID:[[self attributeForKey:@"user"] objectForKey:@"id_str"]];
         [_byUser mergeAttributesFromDictionary:[self attributeForKey:@"user"]];
     }
     return _byUser;

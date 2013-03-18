@@ -6,17 +6,17 @@
 //  Copyright (c) 2013年 novi. All rights reserved.
 //
 
-#import "APIRequest.h"
-#import "User.h"
-#import "APIResponse.h"
+#import "DEAPIRequest.h"
+#import "DEUser.h"
+#import "DEAPIResponse.h"
 
-@interface APIRequest ()
+@interface DEAPIRequest ()
 {
 
 }
 @end
 
-@implementation APIRequest
+@implementation DEAPIRequest
 
 -(void)sendRequestWithCallback:(RequestCallback)callback
 {
@@ -28,7 +28,7 @@
     // 送信するリクエストを作成
     // Twitter は iOS 標準の SLRequest で NSURLRequest を生成できる
     
-    SLRequestMethod method;
+    SLRequestMethod method = SLRequestMethodGET;
     if (self.method == LTAPIRequestMethodGET) {
         method = SLRequestMethodGET;
     } else if (self.method == LTAPIRequestMethodPOST) {
@@ -36,7 +36,7 @@
     }
     
     SLRequest* req = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:method URL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/1.1%@.json", self.path]] parameters:self.params];
-    req.account = [User me].account;
+    req.account = [DEUser me].account;
     
     NSMutableURLRequest* reqs = [[req preparedURLRequest] mutableCopy];
     [reqs setTimeoutInterval:20];
@@ -47,7 +47,7 @@
 {
     // API のレスポンスに使用するクラスを返す
     // アプリで作成した `APIResponse` を使用
-    return [APIResponse class];
+    return [DEAPIResponse class];
 }
 
 -(void)dealloc

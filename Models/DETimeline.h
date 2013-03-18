@@ -16,11 +16,11 @@ typedef NS_ENUM(NSUInteger, TimelineType) {
 
 typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSet);
 
-@class User;
-@interface Timeline : LTModel
+@class DEUser;
+@interface DETimeline : LTModel
 
 @property (nonatomic, readonly) TimelineType type;
-@property (nonatomic, readonly, weak) User* user; // この Timeline の User (親), 循環参照を避けるため weak
+@property (nonatomic, readonly, weak) DEUser* user; // この Timeline の User (親), 循環参照を避けるため weak
 @property (nonatomic, readonly, copy) NSString* localizedTitle; // NavigationBar に表示するタイトルなど
 @property (nonatomic, readonly, copy) NSArray* tweets; // Tweet 一覧
 
@@ -36,7 +36,7 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 // ViewController や View から見てプライベートなメソッド
-- (id)initWithType:(TimelineType)type user:(User*)user;
+- (id)initWithType:(TimelineType)type user:(DEUser*)user;
 - (void)setSearchQuery:(NSString*)query;
 
 @end

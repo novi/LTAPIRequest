@@ -7,8 +7,8 @@
 //
 
 #import "FirstViewController.h"
-#import "APIRequest.h"
-#import "User.h"
+#import "DEAPIRequest.h"
+#import "DEUser.h"
 #import "TimelineViewController.h"
 
 @interface FirstViewController ()
@@ -26,7 +26,7 @@
 {
     // ボタン連打防止
     sender.enabled = NO;
-    ACAccountStore* store = [APIRequest accountStore];
+    ACAccountStore* store = [DEAPIRequest accountStore];
     [store requestAccessToAccountsWithType:[store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter] options:nil completion:^(BOOL granted, NSError *error) {
         // completion は Main Queue で実行されない場合があるので注意
         if (granted && !error) {
@@ -35,7 +35,7 @@
                 // 2つ以上のアカウントがある場合どちらかが適当に選択される
                 ACAccount* account = [[store accounts] lastObject];
                 NSLog(@"%@", account);
-                User* me = [User me];
+                DEUser* me = [DEUser me];
                 me.account = account;
                 
                 [me refreshUserInfoWithCallback:^(BOOL success) {

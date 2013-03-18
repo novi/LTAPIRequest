@@ -6,20 +6,20 @@
 //  Copyright (c) 2013年 novi. All rights reserved.
 //
 
-#import "Timeline.h"
-#import "Tweet.h"
-#import "User.h"
-#import "APIRequest.h"
-#import "APIResponse.h"
+#import "DETimeline.h"
+#import "DETweet.h"
+#import "DEUser.h"
+#import "DEAPIRequest.h"
+#import "DEAPIResponse.h"
 
-@interface Timeline ()
+@interface DETimeline ()
 {
     NSMutableArray* _tweets;
-    __weak User* _user;
+    __weak DEUser* _user;
 }
 @end
 
-@implementation Timeline
+@implementation DETimeline
 
 // 標準のイニシャライザは無効に
 // 外部からインスタンス化できない
@@ -29,7 +29,7 @@
     return nil;
 }
 
-- (id)initWithType:(TimelineType)type user:(User *)user
+- (id)initWithType:(TimelineType)type user:(DEUser *)user
 {
     self = [super init];
     if (self) {
@@ -47,7 +47,7 @@
 
 -(id)initSearchTimelineWithQuery:(NSString *)query
 {
-    typeof(self) obj = [self initWithType:TimelineTypeSearch user:[User me]];
+    typeof(self) obj = [self initWithType:TimelineTypeSearch user:[DEUser me]];
     [obj setSearchQuery:query];
     return obj;
 }
@@ -69,14 +69,14 @@
         [[NSException exceptionWithName:NSInvalidArgumentException reason:@"invalid timeline type" userInfo:nil] raise];
     }
     
-    APIRequest* req = [[APIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
-    [req sendRequestWithCallback:^(APIResponse *response) {
+    DEAPIRequest* req = [[DEAPIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
+    [req sendRequestWithCallback:^(DEAPIResponse *response) {
         if (!response.success) {
             callback(NO, nil);
             return;
         }
         for (NSDictionary* dict in [response.statuses reverseObjectEnumerator]) {
-            Tweet* tweet = [[Tweet alloc] initWithData:dict timeline:self];
+            DETweet* tweet = [[DETweet alloc] initWithData:dict timeline:self];
             [_tweets insertObject:tweet atIndex:0];
         }
         callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [response.statuses count])]);
@@ -104,15 +104,15 @@
         [[NSException exceptionWithName:NSInvalidArgumentException reason:@"invalid timeline type" userInfo:nil] raise];
     }
     
-    APIRequest* req = [[APIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
-    [req sendRequestWithCallback:^(APIResponse *response) {
+    DEAPIRequest* req = [[DEAPIRequest alloc] initWithAPI:path method:LTAPIRequestMethodGET params:params];
+    [req sendRequestWithCallback:^(DEAPIResponse *response) {
         if (!response.success) {
             callback(NO, nil);
             return;
         }
         NSUInteger oldCount = _tweets.count;
         for (NSDictionary* dict in response.statuses) {
-            Tweet* tweet = [[Tweet alloc] initWithData:dict timeline:self];
+            DETweet* tweet = [[DETweet alloc] initWithData:dict timeline:self];
             [_tweets addObject:tweet];
         }
         callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(oldCount, [response.statuses count])]);

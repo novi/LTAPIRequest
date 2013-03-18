@@ -10,12 +10,12 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
-@class APIResponse, User;
+@class DEAPIResponse, DEUser;
 
-typedef void(^RequestCallback)(APIResponse* response);
+typedef void(^RequestCallback)(DEAPIResponse* response);
 typedef void(^RequestUserImageCallback)(UIImage* image, NSString* imageURL);
 
-@interface APIRequest : LTAPIRequest
+@interface DEAPIRequest : LTAPIRequest
 
 // Callbackの型は `RequestCallback` なのでオーバーライド
 - (void)sendRequestWithCallback:(RequestCallback)callback;

@@ -6,24 +6,24 @@
 //  Copyright (c) 2013年 novi. All rights reserved.
 //
 
-#import "User.h"
-#import "Timeline.h"
-#import "APIRequest.h"
-#import "APIResponse.h"
+#import "DEUser.h"
+#import "DETimeline.h"
+#import "DEAPIRequest.h"
+#import "DEAPIResponse.h"
 
-@interface User ()
+@interface DEUser ()
 {
-    Timeline* _homeTimeline;
-    Timeline* _usersTimeline;
+    DETimeline* _homeTimeline;
+    DETimeline* _usersTimeline;
 }
 @end
 
-@implementation User
+@implementation DEUser
 
 
-+(User *)me
++(DEUser *)me
 {
-    static User* me;
+    static DEUser* me;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         me = [[self alloc] initWithID:nil];
@@ -56,7 +56,7 @@
     return self;
 }
 
-+(User *)userWithUserID:(NSString *)userID
++(DEUser *)userWithUserID:(NSString *)userID
 {
     if ([[self me].ID isEqualToString:userID]) {
         return [self me];
@@ -70,8 +70,8 @@
 {
     NSString* screenName = self.account.username;
     
-    APIRequest* req = [[APIRequest alloc] initWithAPI:@"/users/show" method:LTAPIRequestMethodGET params:self.ID ? @{@"user_id":self.ID} : @{@"screen_name":screenName} ];
-    [req sendRequestWithCallback:^(APIResponse *response) {
+    DEAPIRequest* req = [[DEAPIRequest alloc] initWithAPI:@"/users/show" method:LTAPIRequestMethodGET params:self.ID ? @{@"user_id":self.ID} : @{@"screen_name":screenName} ];
+    [req sendRequestWithCallback:^(DEAPIResponse *response) {
         if (!response.success) {
             callback(NO);
             return;
@@ -84,7 +84,7 @@
 
 #pragma mark - Timelines
 
--(Timeline *)homeTimeline
+-(DETimeline *)homeTimeline
 {
     // 自分のみ
     if (!self.isMe) {
@@ -92,15 +92,15 @@
         return nil;
     }
     if (!_homeTimeline) {
-        _homeTimeline = [[Timeline alloc] initWithType:TimelineTypeHome user:self];
+        _homeTimeline = [[DETimeline alloc] initWithType:TimelineTypeHome user:self];
     }
     return _homeTimeline;
 }
 
--(Timeline *)usersTimeline
+-(DETimeline *)usersTimeline
 {
     if (!_usersTimeline) {
-        _usersTimeline = [[Timeline alloc] initWithType:TimelineTypeUsers user:self];
+        _usersTimeline = [[DETimeline alloc] initWithType:TimelineTypeUsers user:self];
     }
     return _usersTimeline;
 }
