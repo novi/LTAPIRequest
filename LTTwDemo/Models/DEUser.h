@@ -9,7 +9,7 @@
 #import "LTModel.h"
 
 @class DETimeline, ACAccount;
-// 接頭語をとりあえず DM(Demo) に
+// 接頭語をとりあえず DE(Demo) に
 @interface DEUser : LTModel
 
 // ユーザーの持つ Timeline

@@ -20,6 +20,7 @@ static int networkCount = 0;
 
 @interface LTAPIRequest ()
 {
+    NSURLRequest* _request;
 }
 
 @end
@@ -47,11 +48,11 @@ static int networkCount = 0;
 
 -(void)sendRequestWithCallback:(LTAPIRequestCallback)callback
 {
-    NSURLRequest* request = [self prepareRequest];
-    LTAPIRequestDebugLog(@"%@", [self descriptionWithRequest:request]);
+    _request = [self prepareRequest];
+    LTAPIRequestDebugLog(@"%@", [self descriptionWithRequest:_request]);
     
     [[self class] beginNetworkConnection];
-    [[self class] lt_sendAsynchronousRequest:request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
+    [[self class] lt_sendAsynchronousRequest:_request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
         [[self class] endNetworkConnection];
         LTAPIResponse* res = [[[[self class] APIResponseClass] alloc] init];
         res.responseData = responseData;
@@ -102,6 +103,11 @@ static int networkCount = 0;
     NSDictionary* methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
                               @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
     return [NSString stringWithFormat:@"%@ %@ (%@)\n%@\n%@", methods[@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request];
+}
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, %@", [super description], [self descriptionWithRequest:_request]];
 }
 
 #pragma mark -

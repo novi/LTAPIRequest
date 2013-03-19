@@ -23,7 +23,7 @@
 @property (nonatomic) LTAPIRequest* request;
 
 // APIリクエストのエラー時に呼ばれる
-- (void)showErrorAlert; // thread safe に実装する
+- (void)showErrorAlert; // リクエスト用の Queue で呼ばれるので注意
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 - (NSError*)parseJSON; // if retuns nil, success, JSONパース後何かしたい場合はオーバーライドする, パース用の Queue で呼ばれるので注意

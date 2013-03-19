@@ -56,7 +56,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc %@", self);
+    NSLog(@"dealloc %p, %@", self, NSStringFromClass([self class]));
 }
 
 +(ACAccountStore *)accountStore

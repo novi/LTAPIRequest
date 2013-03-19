@@ -15,6 +15,8 @@
 #pragma mark -
 // オーバーライド
 
+/*
+ パース後処理, 任意, コメントを外す
 -(NSError *)parseJSON
 {
     NSError* parseError = [super parseJSON];
@@ -25,6 +27,7 @@
     }
     return parseError;
 }
+*/
 
 -(BOOL)success
 {
@@ -67,7 +70,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"dealloc response %p, request: %p", self, self.request);
+    NSLog(@"dealloc response %p - %@, request: %p - %@", self, NSStringFromClass([self class]), self.request, NSStringFromClass([self.request class]));
 }
 
 @end
