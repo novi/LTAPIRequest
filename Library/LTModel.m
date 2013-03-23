@@ -32,6 +32,11 @@
 
 #pragma mark - Attributes management
 
+-(NSDictionary *)attributes
+{
+    return [_data copy];
+}
+
 - (void)removeAllAttributes
 {
     _data = [NSMutableDictionary dictionary];

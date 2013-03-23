@@ -27,13 +27,14 @@ typedef void(^LTAPIRequestCallback)(LTAPIResponse* res);
 - (id)initWithAPI:(NSString*)path method:(LTAPIRequestMethod)method params:(NSDictionary*)dict;
 @property (nonatomic, readonly, copy) NSString* path;
 @property (nonatomic, readonly) LTAPIRequestMethod method;
+@property (nonatomic, readonly, copy) NSString* methodString; // LTAPIRequestMethodGET -> "GET"... 
 @property (nonatomic, readonly, copy) NSDictionary* params;
 @property (nonatomic, readonly, weak) LTAPIResponse* response;
 
 // サブクラスでオーバーライドする
 - (void)sendRequestWithCallback:(LTAPIRequestCallback)callback; // APIのリクエストを送信
 + (Class)APIResponseClass; // APIResponseのクラス
-- (NSMutableURLRequest*)prepareRequest; // 実際に送信するRequestを作成
+- (NSURLRequest*)prepareRequest; // 実際に送信するRequestを作成
 
 // ユーティリティメソッド
 // (handlerはqueueのスレッドで呼ばれる)

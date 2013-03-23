@@ -11,7 +11,8 @@
 @class LTAPIRequest;
 @interface LTAPIResponse : NSObject
 
-@property (nonatomic, readonly) BOOL success;
+@property (nonatomic, readonly) BOOL success; // サブクラスでオーバーライド
+
 @property (nonatomic, readonly, copy) id json;
 
 
@@ -20,6 +21,7 @@
 @property (nonatomic) NSData* responseData;
 @property (nonatomic) NSURLResponse* response;
 @property (nonatomic) NSError* error;
+@property (nonatomic) NSError* parseError;
 @property (nonatomic) LTAPIRequest* request;
 
 // APIリクエストのエラー時に呼ばれる

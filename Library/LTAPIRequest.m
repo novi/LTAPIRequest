@@ -46,6 +46,13 @@ static int networkCount = 0;
     return self;
 }
 
+-(NSString *)methodString
+{
+    return [self methodStringDictionary][@(self.method)];
+}
+
+#pragma mark - API
+
 -(void)sendRequestWithCallback:(LTAPIRequestCallback)callback
 {
     _request = [self prepareRequest];
@@ -61,8 +68,8 @@ static int networkCount = 0;
         res.request = self;
         _response = res;
         if (!res.success) {
+            [res showErrorAlert];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [res showErrorAlert];
                 LTAPIRequestDebugLog(@"Request failed: %@", res);
                 callback(res);
             });
@@ -71,7 +78,8 @@ static int networkCount = 0;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSError* error = [res parseJSON];
             if (error) {
-                res.error = error;
+                res.parseError = error;
+                [res showErrorAlert];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     LTAPIRequestDebugLog(@"Parse Error: %@", res);
                     callback(res);
@@ -100,14 +108,23 @@ static int networkCount = 0;
 
 -(NSString *)descriptionWithRequest:(NSURLRequest*)request
 {
-    NSDictionary* methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
-                              @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
-    return [NSString stringWithFormat:@"%@ %@ (%@)\n%@\n%@", methods[@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request];
+    return [NSString stringWithFormat:@"%@ %@ (%@)\n%@\n%@", [self methodStringDictionary][@(self.method)], self.path, self.params, request.allHTTPHeaderFields, request];
 }
 
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"%@, %@", [super description], [self descriptionWithRequest:_request]];
+}
+
+- (NSDictionary*)methodStringDictionary
+{
+    static NSDictionary* methods;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        methods = @{@(LTAPIRequestMethodPUT): @"PUT", @(LTAPIRequestMethodGET): @"GET",
+                                  @(LTAPIRequestMethodPOST): @"POST", @(LTAPIRequestMethodDELETE): @"DELETE"};
+    });
+    return methods;
 }
 
 #pragma mark -
