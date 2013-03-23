@@ -19,7 +19,7 @@
 
 -(NSURLRequest *)prepareRequest
 {
-    NSString* host = @"http://localhost:3001";
+    NSString* host = @"http://localhost:3000";
     NSString* url;
     if ([self.path hasPrefix:@"/auth"]) {
         url = [NSString stringWithFormat:@"%@%@", host, self.path];

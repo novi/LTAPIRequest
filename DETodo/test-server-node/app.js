@@ -12,7 +12,7 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3001);
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -78,13 +78,13 @@ app.del(API_PATH + '/list/l:id', function(req, res) {
 // Items
 
 // 同じく GET /list/l?
-app.get(API_PATH + '/list/l:id', function(req, res) {
+app.get(API_PATH + '/list/l:id/item', function(req, res) {
   // _id の形式を l?_i? にする (l=list, i=item, e.g. l1_i2)
   res.json({items:[{_id:'l'+req.param('id')+'_i1', title:'list '+req.param('id') + " item 1", done:false}, {_id:'l'+req.param('id')+'_i2', title:'list '+req.param('id') + " item 2", done:true}]});
 });
 
 // POST /list/l?
-app.post(API_PATH + '/list/l:id', function(req, res) {
+app.post(API_PATH + '/list/l:id/item', function(req, res) {
   res.json(201,{_id:'l'+req.param('id')+'_i3', title:req.param('title'), done:false});
 });
 

@@ -95,7 +95,7 @@ NSString* const DETodoListTodoItemsDidChangeNotification = @"DETodoListTodoItems
 
 -(void)refreshTodoItemsWithCallback:(LTModelCollectionCallback)callback
 {
-    [[[DEAPIRequest alloc] initWithAPI:[NSString stringWithFormat:@"/list/%@", self.ID] method:LTAPIRequestMethodGET params:nil] sendRequestWithCallback:^(DEAPIResponse *res) {
+    [[[DEAPIRequest alloc] initWithAPI:[NSString stringWithFormat:@"/list/%@/item", self.ID] method:LTAPIRequestMethodGET params:nil] sendRequestWithCallback:^(DEAPIResponse *res) {
         if (!res.success) {
             callback(NO, NO);
             return;
@@ -116,7 +116,7 @@ NSString* const DETodoListTodoItemsDidChangeNotification = @"DETodoListTodoItems
     [_items insertObject:item atIndex:0];
     callback(YES, YES, [NSIndexSet indexSetWithIndex:0]);
     
-    [[[DEAPIRequest alloc] initWithAPI:[NSString stringWithFormat:@"/list/%@", self.ID] method:LTAPIRequestMethodPOST params:@{@"title": item.title}] sendRequestWithCallback:^(DEAPIResponse *res) {
+    [[[DEAPIRequest alloc] initWithAPI:[NSString stringWithFormat:@"/list/%@/item", self.ID] method:LTAPIRequestMethodPOST params:@{@"title": item.title}] sendRequestWithCallback:^(DEAPIResponse *res) {
         if (!res.success) {
             [_items removeObjectIdenticalTo:item]; // rollback
             callback(NO, YES, nil);

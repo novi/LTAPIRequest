@@ -55,13 +55,13 @@ Todoリスト削除
     
 Todoアイテム一覧
 
-    GET /list/<<LIST _id>>
+    GET /list/<<LIST _id>>/item
     
     -> {items:[{_id:"123ab", title:"TODO ITEM TITLE is HERE", done:true}, …]}
     
 Todoアイテム作成
 
-    POST /list/<<LIST _id>> {title:"NEW ITEM TITLE", done:false}
+    POST /list/<<LIST _id>>/item {title:"NEW ITEM TITLE", done:false}
     
     -> {_id:"456de", title:"NEW ITEM TITLE", done:false}
     
