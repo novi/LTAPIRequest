@@ -11,6 +11,7 @@
     <file path="/app.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364029247896" ignored="false" />
     <file path="/api.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364033198648" ignored="false" />
     <file path="/todolist.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364031565504" ignored="false" />
+    <file path="$PROJECT_DIR$/../test-server-node/app.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364033360523" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +109,7 @@
       <file leaf-file-name="api.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="23" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.64017993">
+            <state line="35" column="1" selection-start="900" selection-end="900" vertical-scroll-proportion="0.21289356">
               <folding />
             </state>
           </provider>
@@ -265,6 +266,7 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -347,7 +349,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="815" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -483,7 +485,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="23" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.64017993">
+        <state line="35" column="1" selection-start="900" selection-end="900" vertical-scroll-proportion="0.21289356">
           <folding />
         </state>
       </provider>
