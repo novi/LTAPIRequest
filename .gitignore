@@ -16,3 +16,4 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+DETodo/test-server-node/node_modules/
