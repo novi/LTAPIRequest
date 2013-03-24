@@ -26,8 +26,7 @@ URI
     POST /login {user_id:"NEW USER ID or EXIST USER ID"}
     
     -> {_id:"98765efef", user_id:"USER ID"} (create new user if not exist)
-    
-セッションストレージはオンメモリなので、Nodeを再起動するとクリアされます
+
 
 ### リソース (要ログイン)
 

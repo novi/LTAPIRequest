@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     model = require('../models'); // Load models
 
 //mongoose.set('debug', true);
-var conn = mongoose.connect('localhost', 'forTesting');
+mongoose.connect('localhost', 'forTesting');
 
 describe('User', function() {
   var User = mongoose.model('User');
