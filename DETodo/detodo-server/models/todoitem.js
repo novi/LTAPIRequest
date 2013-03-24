@@ -18,25 +18,51 @@ TodoItem.pre('save', function(next) {
   next();
 });
 
+/**
+ * 新規アイテム
+ * @param userId
+ * @param listId
+ * @param title
+ * @param callback
+ */
 TodoItem.statics.createItem = function(userId, listId, title, callback) {
   var list = new this({title:title, user:userId, list:listId});
   list.save(callback);
 };
 
-TodoItem.statics.deleteItem = function(id, callback) {
-  this.remove({_id:id}, callback);
+/**
+ * アイテムを削除
+ * @param userId
+ * @param id
+ * @param callback
+ */
+TodoItem.statics.deleteItem = function(userId, id, callback) {
+  this.remove({_id:id, user:userId}, callback);
 };
 
-TodoItem.statics.updateDone = function(id, done, callback) {
-  this.findById(id, function(error, item) {
+/**
+ * アイテムをアップデート
+ * @param userId
+ * @param id
+ * @param done
+ * @param callback
+ */
+TodoItem.statics.updateDone = function(userId, id, done, callback) {
+  this.findOne({_id:id, user:userId}, function(error, item) {
     if (error) return callback(error);
     item.done = done;
     item.save(callback);
   });
 };
 
+/**
+ * アイテム一覧
+ * @param userId
+ * @param listId
+ * @param callback
+ */
 TodoItem.statics.findAllItems = function(userId, listId, callback) {
-  this.find({user:userId, list:listId}, callback);
+  this.find({user:userId, list:listId}, null, {sort:{createdAt:-1}}, callback);
 };
 
 

@@ -28,7 +28,7 @@ exports.start = function(app) {
 
   sync(TodoList, 'deleteList');
   app.del(API_PATH + '/list/:id', function(req, res, next) {
-    TodoList.deleteList(req.param('id'));
+    TodoList.deleteList(req.session.uid, req.param('id'));
     return res.json({})
   });
 
@@ -53,13 +53,13 @@ exports.start = function(app) {
   app.put(API_PATH + '/list/:lid/item/:iid', function(req, res, next) {
     var done = req.param('done');
     if (done == null) return res.json(400,{});
-    var item = TodoItem.updateDone(req.param('iid'), done);
+    var item = TodoItem.updateDone(req.session.uid, req.param('iid'), done);
     return res.json(item);
   });
 
   sync(TodoItem, 'deleteItem');
   app.del(API_PATH + '/list/:lid/item/:iid', function(req, res, next) {
-    TodoItem.deleteItem(req.param('iid'));
+    TodoItem.deleteItem(req.session.uid, req.param('iid'));
     return res.json({});
   });
 };
