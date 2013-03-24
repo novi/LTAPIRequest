@@ -73,7 +73,7 @@ ViewController のコアの実装はとてもシンプルですし、このよ�
 `DETodo` は クラウドで同期できる簡単な TODO アプリです。
 (_デモを作ってから思ったのですが、ToDoアプリはWebサービスのクライアントというよりは同期型のほうがいいですね。Model åのラッパーを作れば同期型にすることも可能です。_)
 
-[Server側](blob/master/DETodo/Server.md)の説明と[APIドキュメント](blob/master/DETodo/api_document.md)も合わせて参照してください。
+[Server側](DETodo/Server.md)の説明と[APIドキュメント](DETodo/api_document.md)も合わせて参照してください。
 
 上の例と同じく、内部的な Model の関係は以下のようになります。
 User は自分(認証されたユーザー)のみです。
