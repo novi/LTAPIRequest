@@ -22,6 +22,7 @@
 
 - (void)userDidLogin:(NSNotification*)notif
 {
+    // ユーザーがログイン完了したら一覧を読み込む
     if (self.refreshControl) {
         [self refresh:self.refreshControl];
     }
@@ -112,7 +113,7 @@
     
     DETodoList* list = [_user.todoLists objectAtIndex:indexPath.row];
     cell.textLabel.text = list.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d項目", list.todoItems.count];
+    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%d項目", list.todoItems.count];
     
     return cell;
 }
@@ -120,6 +121,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // すぐに削除
         [_user deleteTodoListAtIndex:indexPath.row callback:^(BOOL success, BOOL collectionChanged) {
         }];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

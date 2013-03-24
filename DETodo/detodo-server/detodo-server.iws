@@ -102,7 +102,7 @@
       <file leaf-file-name="test.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="18" selection-start="4583" selection-end="4583" vertical-scroll-proportion="3.485757">
+            <state line="11" column="6" selection-start="263" selection-end="263" vertical-scroll-proportion="0.2353823">
               <folding />
             </state>
           </provider>
@@ -562,7 +562,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="18" selection-start="4583" selection-end="4583" vertical-scroll-proportion="3.485757">
+        <state line="11" column="6" selection-start="263" selection-end="263" vertical-scroll-proportion="0.2353823">
           <folding />
         </state>
       </provider>

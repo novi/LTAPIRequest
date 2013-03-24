@@ -28,6 +28,7 @@
 
 - (IBAction)loginTapped:(UIButton*)sender
 {
+    // Login ボタンを連打できないようにする
     sender.enabled = NO;
     [DEUser loginWithUserID:self.loginField.text callback:^(BOOL success) {
         if (success) {

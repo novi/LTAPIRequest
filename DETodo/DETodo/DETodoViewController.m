@@ -20,6 +20,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        // TodoItemが1つアップデートされたらそのRowをアップデートする
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoItemUpdated:) name:DETodoItemDidChangeNotification object:nil];
     }
     return self;
@@ -82,6 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // Section 0 は追加用のTextField用
     if (section == 0) {
         return 1;
     } else if (section == 1) {
@@ -111,9 +113,17 @@
         
         DETodoItem* item = [_todoList.todoItems objectAtIndex:indexPath.row];
         cell.textLabel.text = item.title;
+        
         UISwitch* sw = (id)cell.accessoryView;
         sw.on = item.isDone;
         sw.tag = indexPath.row;
+        if(sw.on) {
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+        } else {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+        
+        // 作成中は切り替えできないように
         if (item.isCreating) {
             sw.enabled = NO;
         } else {
@@ -142,6 +152,7 @@
     [item setDone:sender.on callback:^(BOOL success) {
         
     }];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
