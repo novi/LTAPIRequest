@@ -47,7 +47,14 @@ TodoList.statics.deleteList = function(userId, id, callback) {
   var TodoItem = this.model('TodoItem'), self = this;
   TodoItem.remove({list:id, user:userId}, function(error) {
     if(error) return callback(error);
-    self.remove({_id:id, user:userId}, callback);
+    self.count({_id:id, user:userId}, function(error, count) {
+      if (error) return callback(error);
+      if (count == 0) return callback(null, false);
+      self.remove({_id:id, user:userId}, function(error) {
+        if (error) return callback(error);
+        callback(null, true);
+      });
+    });
   });
 };
 

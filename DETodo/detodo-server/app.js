@@ -11,7 +11,6 @@ app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('dbname', 'detodo');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -27,6 +26,14 @@ app.configure(function(){
 
 app.configure('development', function(){
   mongoose.set('debug', true);
+  app.set('dbname', 'detodo');
+  app.use(express.errorHandler());
+});
+
+app.configure('test', function(){
+  console.warn('test env');
+  mongoose.set('debug', true);
+  app.set('dbname', 'forAPITesting');
   app.use(express.errorHandler());
 });
 

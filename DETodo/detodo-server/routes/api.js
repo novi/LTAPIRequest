@@ -28,8 +28,9 @@ exports.start = function(app) {
 
   sync(TodoList, 'deleteList');
   app.del(API_PATH + '/list/:id', function(req, res, next) {
-    TodoList.deleteList(req.session.uid, req.param('id'));
-    return res.json({})
+    var success = TodoList.deleteList(req.session.uid, req.param('id'));
+    if(success) return res.json({});
+    else return res.json(404, {});
   });
 
   /**
