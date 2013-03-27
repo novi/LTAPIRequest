@@ -4,17 +4,17 @@
     <list default="true" id="0080b5ac-d4c1-4495-89f6-131f69b3689c" name="Default" comment="" />
     <ignored path="detodo-server.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/todoitem.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364111263301" ignored="false" />
+    <file path="/todoitem.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364386211083" ignored="false" />
     <file path="/user.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364106761299" ignored="false" />
     <file path="/package.json" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364027406060" ignored="false" />
     <file path="/auth.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364032383411" ignored="false" />
-    <file path="/app.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364199298984" ignored="false" />
-    <file path="/api.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364200732314" ignored="false" />
-    <file path="/todolist.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364200686210" ignored="false" />
+    <file path="/app.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364386178659" ignored="false" />
+    <file path="/api.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364385933668" ignored="false" />
+    <file path="/todolist.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364385173081" ignored="false" />
     <file path="$PROJECT_DIR$/../test-server-node/app.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364105353685" ignored="false" />
     <file path="/test.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364195740651" ignored="false" />
     <file path="/mocha.opts" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364188435024" ignored="false" />
-    <file path="/request.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364302684392" ignored="false" />
+    <file path="/request.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364387212932" ignored="false" />
     <file path="/a.dummy" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364195808586" ignored="false" />
     <file path="/utils.js" changelist="0080b5ac-d4c1-4495-89f6-131f69b3689c" time="1364301745026" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,6 +31,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -65,7 +66,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -78,7 +78,16 @@
       <file leaf-file-name="request.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/request.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="8" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
+            <state line="216" column="4" selection-start="6869" selection-end="6869" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -93,10 +102,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="api.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="72" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
+            <state line="37" column="5" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.010494753">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="request.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/express/lib/request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="252" column="4" selection-start="5558" selection-end="5558" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todoitem.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/todoitem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="17" selection-start="1009" selection-end="1009" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -105,7 +132,7 @@
       <file leaf-file-name="todolist.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/todolist.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="55" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
+            <state line="58" column="0" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -114,16 +141,7 @@
       <file leaf-file-name="test.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="22" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/supertest/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="30" selection-start="93" selection-end="97" vertical-scroll-proportion="0.0">
+            <state line="8" column="41" selection-start="212" selection-end="222" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,28 +156,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connection.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/connection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/mongodb/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="34" selection-start="869" selection-end="869" vertical-scroll-proportion="0.5277361">
+            <state line="29" column="34" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,15 +181,15 @@
         <option value="$PROJECT_DIR$/routes/auth.js" />
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/tests/test.js" />
-        <option value="$PROJECT_DIR$/models/todoitem.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/test/mocha.opts" />
         <option value="$PROJECT_DIR$/node_modules/supertest/lib/test.js" />
-        <option value="$PROJECT_DIR$/models/todolist.js" />
-        <option value="$PROJECT_DIR$/routes/api.js" />
         <option value="$PROJECT_DIR$/test/utils/utils.js" />
-        <option value="$PROJECT_DIR$/test/request.js" />
+        <option value="$PROJECT_DIR$/routes/api.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/models/todoitem.js" />
+        <option value="$PROJECT_DIR$/test/request.js" />
+        <option value="$PROJECT_DIR$/models/todolist.js" />
       </list>
     </option>
   </component>
@@ -224,7 +224,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -291,7 +291,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,7 +386,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="815" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="815" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -395,7 +395,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26040173" sideWeight="0.6705036" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2682927" sideWeight="0.6705036" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -465,32 +465,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/Readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/node_modules/connect/node_modules/qs/test/browser/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7808" column="22" selection-start="204214" selection-end="204214" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1334290847000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1334290847000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1334290847000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1334290847000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1334290847000" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="7808" column="22" selection-start="204214" selection-end="204214" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/detodo-server.iml">
@@ -531,16 +508,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/todolist.js">
+    <entry file="file://$PROJECT_DIR$/routes/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="55" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="22" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -552,23 +522,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="34" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="4" selection-start="5558" selection-end="5558" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/todoitem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="17" selection-start="1009" selection-end="1009" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="41" selection-start="212" selection-end="222" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="8" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
+        <state line="216" column="4" selection-start="6869" selection-end="6869" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/todolist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="0" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="72" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="34" selection-start="869" selection-end="869" vertical-scroll-proportion="0.5277361">
+        <state line="37" column="5" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.010494753">
           <folding />
         </state>
       </provider>

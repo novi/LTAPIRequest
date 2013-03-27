@@ -36,14 +36,23 @@ exports.start = function(app) {
   /**
    * TodoItem API
    */
+  sync(TodoList, 'hasList');
+  var hasList = function(req, res, next) {
+    var hasList = TodoList.hasList(req.session.uid, req.param('lid'));
+    if(!hasList) {
+      return res.json(404, {});
+    }
+    return next()
+  }
+
   sync(TodoItem, 'findAllItems');
-  app.get(API_PATH + '/list/:lid/item', function(req, res, next) {
+  app.get(API_PATH + '/list/:lid/item', hasList, function(req, res, next) {
     var items = TodoItem.findAllItems(req.session.uid, req.param('lid'));
     return res.json({items:items});
   });
 
   sync(TodoItem, 'createItem');
-  app.post(API_PATH + '/list/:lid/item', function(req, res, next) {
+  app.post(API_PATH + '/list/:lid/item', hasList, function(req, res, next) {
     var title = req.param('title');
     if (!title || (title && title.length <= 0)) return res.json(400,{});
     var item = TodoItem.createItem(req.session.uid, req.param('lid'), title);
@@ -55,11 +64,12 @@ exports.start = function(app) {
     var done = req.param('done');
     if (done == null) return res.json(400,{});
     var item = TodoItem.updateDone(req.session.uid, req.param('iid'), done);
-    return res.json(item);
+    if (item) return res.json(item);
+    else return res.json(404, {});
   });
 
   sync(TodoItem, 'deleteItem');
-  app.del(API_PATH + '/list/:lid/item/:iid', function(req, res, next) {
+  app.del(API_PATH + '/list/:lid/item/:iid', hasList, function(req, res, next) {
     TodoItem.deleteItem(req.session.uid, req.param('iid'));
     return res.json({});
   });

@@ -34,7 +34,6 @@ TodoList.statics.createList = function(userId, title, callback) {
  */
 TodoList.statics.findAllList = function(userId, callback) {
   this.find({user:userId}, null, {sort:{createdAt:-1}}, callback);
-  //callback(new Error());
 };
 
 /**
@@ -58,5 +57,14 @@ TodoList.statics.deleteList = function(userId, id, callback) {
   });
 };
 
+/**
+ * リストが存在するか?
+ * @param userId
+ * @param id
+ * @param callback
+ */
+TodoList.statics.hasList = function(userId, id, callback) {
+  this.count({user:userId, _id:id}, callback);
+};
 
 mongoose.model('TodoList', TodoList);

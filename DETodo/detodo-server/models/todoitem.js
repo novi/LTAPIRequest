@@ -50,8 +50,12 @@ TodoItem.statics.deleteItem = function(userId, id, callback) {
 TodoItem.statics.updateDone = function(userId, id, done, callback) {
   this.findOne({_id:id, user:userId}, function(error, item) {
     if (error) return callback(error);
-    item.done = done;
-    item.save(callback);
+    if (item) {
+      item.done = done;
+      return item.save(callback);
+    } else {
+      return callback(null, null);
+    }
   });
 };
 

@@ -10,29 +10,30 @@ child.stderr.on('data', function(data) {
 })
 */
 
-var request = function(agent) {
+var request = function() {
   return request_('http://localhost:3000');
 }
 
 function CleanDB (done){
   utils.cleanDB("mongodb://localhost:27017/forAPITesting?w=1", function(err) {
     if (err) return err;
-    setTimeout(done, 500)
+    done()
+    //setTimeout(done, 500)
   })
 }
 
 
-describe('User API Login', function() {
+describe('User API', function() {
 
   // DBを削除
   before(CleanDB)
 
-  it('should return 400 if no body', function(done) {
+  it('should return 400 when requested with no body', function(done) {
     request().post('/auth/login').expect(400, done)
   })
 
   var t_id;
-  it('should return 200 if have valid post body', function(done) {
+  it('should return 200 when requested with valid post body', function(done) {
     request().post('/auth/login').send({user_id:'test user'})
       .expect(200, function(error, res) {
         if (error) return done(error);
@@ -43,7 +44,7 @@ describe('User API Login', function() {
         done()
       })
   })
-  it('should return 200 with same _id before if have valid post body', function(done) {
+  it('should return 200 with same _id before when requested with same user name', function(done) {
     request().post('/auth/login').send({user_id:'test user'})
       .expect(200).end(function(error, res) {
         if (error) return done(error);
@@ -61,7 +62,7 @@ var TEST_Login = function(user, callback) {
    request().post('/auth/login').send({user_id:user}).withSession(user).expect(200,callback)
 }
 
-describe('Todo List API GET', function() {
+describe('Todo List GET API', function() {
 
   before(function(done) {
     TEST_Login(TEST_USER_ID1, done)
@@ -75,7 +76,7 @@ describe('Todo List API GET', function() {
     request().get('/api/list').expect(403, done)
   })
 
-  it('should return empty array with 200', function(done) {
+  it('should return empty List with 200', function(done) {
     request().get('/api/list').withSession(TEST_USER_ID1).expect(200, function(err, res) {
       if (err) return done(err);
       res.body.lists.should.have.length(0);
@@ -85,7 +86,7 @@ describe('Todo List API GET', function() {
 
 })
 
-describe('Todo List API POST and DELETE', function() {
+describe('Todo List POST and DELETE API', function() {
 
   before(function(done) {
     TEST_Login(TEST_USER_ID1, function(err) {
@@ -104,32 +105,29 @@ describe('Todo List API POST and DELETE', function() {
     request().post('/api/list').expect(403, done)
   })
 
-  it('should return 400 if no valid post body', function(done) {
+  it('should return 400 when requested with no post body', function(done) {
     request().post('/api/list').withSession(TEST_USER_ID1).expect(400, done)
   })
 
   var TEST_list_id;
-  it('should return 200 with created data', function(done) {
+  it('creates List and return 200 with created data', function(done) {
     request().post('/api/list').send({title:'hoge'}).withSession(TEST_USER_ID1).expect(200, function(err, res) {
       if (err) return done(err);
       res.body._id.should.be.ok
       res.body.title.should.equal('hoge')
       TEST_list_id = res.body._id;
-      done()
+      // 作成されたか確認
+      request().get('/api/list').withSession(TEST_USER_ID1).expect(200, function(err, res) {
+        if (err) return done(err);
+        res.body.lists.should.have.length(1)
+        res.body.lists[0]._id.should.equal(TEST_list_id)
+        res.body.lists[0].title.should.equal('hoge')
+        done()
+      })
     })
   })
 
-  it('should return created List', function(done) {
-    request().get('/api/list').withSession(TEST_USER_ID1).expect(200, function(err, res) {
-      if (err) return done(err);
-      res.body.lists.should.have.length(1)
-      res.body.lists[0]._id.should.equal(TEST_list_id)
-      res.body.lists[0].title.should.equal('hoge')
-      done()
-    })
-  })
-
-  it('should not delete another user\'s list', function(done) {
+  it('should not delete another users list', function(done) {
     request().del('/api/list/' + TEST_list_id).withSession(TEST_USER_ID2).expect(404, done)
   })
 
@@ -144,8 +142,113 @@ describe('Todo List API POST and DELETE', function() {
     })
   })
 
-  it('deletes created List one more should returns 404', function(done) {
+  it('deletes created List one more and should returns 404', function(done) {
     request().del('/api/list/' + TEST_list_id).withSession(TEST_USER_ID1).expect(404, done)
+  })
+
+})
+
+
+
+describe('Todo Item API', function() {
+
+  var TEST_list_id_1_for_user1,
+      TEST_list_id_1_for_user2;
+  before(function(done) {
+    CleanDB(function(err) {
+      if(err) return done(err);
+      TEST_Login(TEST_USER_ID1, function(err) {
+        if(err) return done(err);
+        TEST_Login(TEST_USER_ID2, function(err) {
+          request().post('/api/list').send({title:'fuga1'}).withSession(TEST_USER_ID1).expect(200, function(err, res) {
+            if(err) return done(err)
+            TEST_list_id_1_for_user1 = res.body._id;
+            request().post('/api/list').send({title:'fuga2'}).withSession(TEST_USER_ID2).expect(200, function(err, res) {
+              if(err) return done(err)
+              TEST_list_id_1_for_user2 = res.body._id;
+              done()
+            })
+          })
+        })
+      })
+    })
+  })
+
+  after(function(done) {
+    clearSession(TEST_USER_ID1, function() {
+      clearSession(TEST_USER_ID2, done)
+    })
+  })
+
+
+  it('gets empty Item with 200 first', function(done) {
+    request().get('/api/list/' + TEST_list_id_1_for_user1 + '/item').withSession(TEST_USER_ID1).expect(200, function(err, res) {
+      if (err) return done(err);
+      res.body.items.should.have.length(0)
+      done()
+    })
+  })
+
+  var TEST_item_1_for_user1,
+      TEST_item_1_for_user2;
+  it('creates new Item and returns 200 with created data', function(done) {
+    request().post('/api/list/' + TEST_list_id_1_for_user1 + '/item').send({title:'hoge item'}).withSession(TEST_USER_ID1).expect(200, function(err, res) {
+      if(err) return done(err);
+      res.body._id.should.be.ok
+      res.body.title.should.equal('hoge item')
+      TEST_item_1_for_user1 = res.body._id;
+      request().post('/api/list/' + TEST_list_id_1_for_user1 + '/item').send({title:'hoge item'}).withSession(TEST_USER_ID2).expect(404, done)
+    })
+  })
+
+  it('should returns 200 with created Item before', function(done) {
+    request().get('/api/list/' + TEST_list_id_1_for_user1 + '/item').withSession(TEST_USER_ID1).expect(200, function(err, res) {
+      if (err) return done(err);
+      res.body.items.should.have.length(1)
+      res.body.items[0]._id.should.equal(TEST_item_1_for_user1)
+      res.body.items[0].title.should.equal('hoge item')
+      res.body.items[0].done.should.be.false
+      done()
+    })
+  })
+
+  it('should returns empty Item when accessing other users List', function(done){
+    request().get('/api/list/' + TEST_list_id_1_for_user1 + '/item').withSession(TEST_USER_ID2).expect(404, done)
+  })
+
+  it('updates Item and returns updated data', function(done) {
+    request().put('/api/list/' + TEST_list_id_1_for_user1 + '/item/' + TEST_item_1_for_user1).send({done:true}).withSession(TEST_USER_ID1).expect(200, function(err, res) {
+      if (err) return done(err)
+      res.body.done.should.be.true
+      res.body._id.should.be.equal(TEST_item_1_for_user1)
+      request().get('/api/list/' + TEST_list_id_1_for_user1 + '/item').withSession(TEST_USER_ID1).expect(200, function(err, res) {
+        if (err) return done(err);
+        res.body.items.should.have.length(1)
+        res.body.items[0]._id.should.equal(TEST_item_1_for_user1)
+        res.body.items[0].done.should.be.true
+        done()
+      })
+    })
+  })
+
+  it('updates other users Item and returns 404', function(done) {
+    request().put('/api/list/' + TEST_list_id_1_for_user1 + '/item/' + TEST_item_1_for_user1).send({done:true}).withSession(TEST_USER_ID2).expect(404, done)
+  })
+
+  it('deletes other users Item and returns 404', function(done) {
+    request().del('/api/list/' + TEST_list_id_1_for_user1 + '/item/' + TEST_item_1_for_user1).withSession(TEST_USER_ID2).expect(404, done)
+  })
+
+  it('deletes created Item and returns 200', function(done) {
+    request().del('/api/list/' + TEST_list_id_1_for_user1 + '/item/' + TEST_item_1_for_user1).withSession(TEST_USER_ID1).expect(200, function(err, res){
+      if(err) return done(err);
+      // 削除されたか確認
+      request().get('/api/list/' + TEST_list_id_1_for_user1 + '/item').withSession(TEST_USER_ID1).expect(200, function(err, res) {
+        if (err) return done(err);
+        res.body.items.should.have.length(0)
+        done()
+      })
+    })
   })
 
 })
