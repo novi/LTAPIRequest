@@ -23,7 +23,7 @@ TodoItem.pre('save', function(next) {
  * @param userId
  * @param listId
  * @param title
- * @param callback
+ * //@param callback
  */
 TodoItem.statics.createItem = function(userId, listId, title, callback) {
   var list = new this({title:title, user:userId, list:listId});
@@ -34,7 +34,7 @@ TodoItem.statics.createItem = function(userId, listId, title, callback) {
  * アイテムを削除
  * @param userId
  * @param id
- * @param callback
+ * //@param callback
  */
 TodoItem.statics.deleteItem = function(userId, id, callback) {
   this.remove({_id:id, user:userId}, callback);
@@ -45,7 +45,7 @@ TodoItem.statics.deleteItem = function(userId, id, callback) {
  * @param userId
  * @param id
  * @param done
- * @param callback
+ * //@param callback
  */
 TodoItem.statics.updateDone = function(userId, id, done, callback) {
   this.findOne({_id:id, user:userId}, function(error, item) {
@@ -63,7 +63,7 @@ TodoItem.statics.updateDone = function(userId, id, done, callback) {
  * アイテム一覧
  * @param userId
  * @param listId
- * @param callback
+ * //@param callback
  */
 TodoItem.statics.findAllItems = function(userId, listId, callback) {
   this.find({user:userId, list:listId}, null, {sort:{createdAt:-1}}, callback);

@@ -9,7 +9,7 @@ var User = new Schema({
 /**
  * 新規ユーザー
  * @param userId
- * @param callback
+ * //@param callback
  */
 User.statics.createUser = function(userId, callback) {
   var user = new this({userId:userId});
@@ -18,8 +18,8 @@ User.statics.createUser = function(userId, callback) {
 
 /**
  * ユーザーを取得
- * @param email
- * @param callback
+ * @param userId
+ * //@param callback
  */
 User.statics.findByUserId = function(userId, callback) {
   this.findOne({userId:userId}, callback);

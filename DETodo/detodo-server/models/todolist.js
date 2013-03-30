@@ -19,7 +19,7 @@ TodoList.pre('save', function(next) {
  * 新規リスト
  * @param userId
  * @param title
- * @param callback
+ * //@param callback
  */
 TodoList.statics.createList = function(userId, title, callback) {
   var list = new this({title:title, user:userId});
@@ -30,7 +30,7 @@ TodoList.statics.createList = function(userId, title, callback) {
 /**
  * リスト一覧
  * @param userId
- * @param callback
+ * //@param callback
  */
 TodoList.statics.findAllList = function(userId, callback) {
   this.find({user:userId}, null, {sort:{createdAt:-1}}, callback);
@@ -40,7 +40,7 @@ TodoList.statics.findAllList = function(userId, callback) {
  * リストを削除
  * @param userId
  * @param id
- * @param callback
+ * //@param callback
  */
 TodoList.statics.deleteList = function(userId, id, callback) {
   var TodoItem = this.model('TodoItem'), self = this;
@@ -61,7 +61,7 @@ TodoList.statics.deleteList = function(userId, id, callback) {
  * リストが存在するか?
  * @param userId
  * @param id
- * @param callback
+ * //@param callback
  */
 TodoList.statics.hasList = function(userId, id, callback) {
   this.count({user:userId, _id:id}, callback);
