@@ -11,6 +11,7 @@
 #import "DETodoList.h"
 #import <objc/runtime.h>
 #import "DETodoViewController.h"
+#import "DEListCell.h"
 
 @interface DETodoListViewController ()<UIAlertViewDelegate>
 {
@@ -20,6 +21,7 @@
 
 @implementation DETodoListViewController
 
+// ログイン通知をModelから受けとる
 - (void)userDidLogin:(NSNotification*)notif
 {
     // ユーザーがログイン完了したら一覧を読み込む
@@ -32,6 +34,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        // User Model
         _user = [DEUser me];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin:) name:DEUserDidLoginNotification object:nil];
     }
@@ -74,9 +77,12 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        // 新規リスト作成
         NSString* text = [alertView textFieldAtIndex:0].text;
         if (text.length > 0) {
+            // リストModelを作成
             DETodoList* list = [[DETodoList alloc] initWithTitle:text user:_user];
+            // API に投げる
             [_user addTodoList:list callback:^(BOOL success, BOOL collectionChanged) {
                 if (collectionChanged) {
                     [self.tableView reloadData];
@@ -90,6 +96,7 @@
 
 - (void)refresh:(UIRefreshControl*)sender
 {
+    // リスト一覧更新
     [sender beginRefreshing];
     [_user refreshTodoListsWithCallback:^(BOOL success, BOOL collectionChanged) {
         [sender endRefreshing];
@@ -109,11 +116,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    DEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     DETodoList* list = [_user.todoLists objectAtIndex:indexPath.row];
-    cell.textLabel.text = list.title;
-    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%d項目", list.todoItems.count];
+    
+    // View(Cell) に Model (list) をセット
+    cell.list = list;
     
     return cell;
 }
@@ -135,7 +143,9 @@
     if ([segue.identifier isEqualToString:@"showItems"]) {
         NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
         DETodoList* list = [_user.todoLists objectAtIndex:indexPath.row];
+        // アイテム表示用のViewControllerを設定
         DETodoViewController* vc = (id)segue.destinationViewController;
+        // アイテムを保持する親のリストModelをセット
         vc.todoList = list;
     }
 }

@@ -35,6 +35,8 @@
 		52B9DBF316F83CE4006AE12B /* LTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBEE16F83CE4006AE12B /* LTAPIRequest.m */; };
 		52B9DBF416F83CE4006AE12B /* LTAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBF016F83CE4006AE12B /* LTAPIResponse.m */; };
 		52B9DBF516F83CE4006AE12B /* LTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBF216F83CE4006AE12B /* LTModel.m */; };
+		52FB7C621747FAB700BD06ED /* DEListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB7C611747FAB700BD06ED /* DEListCell.m */; };
+		52FB7C651747FCE000BD06ED /* DEItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB7C641747FCE000BD06ED /* DEItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,10 @@
 		52B9DBF016F83CE4006AE12B /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
 		52B9DBF116F83CE4006AE12B /* LTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTModel.h; sourceTree = "<group>"; };
 		52B9DBF216F83CE4006AE12B /* LTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTModel.m; sourceTree = "<group>"; };
+		52FB7C601747FAB700BD06ED /* DEListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEListCell.h; sourceTree = "<group>"; };
+		52FB7C611747FAB700BD06ED /* DEListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEListCell.m; sourceTree = "<group>"; };
+		52FB7C631747FCE000BD06ED /* DEItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEItemCell.h; sourceTree = "<group>"; };
+		52FB7C641747FCE000BD06ED /* DEItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 				52155F0C16F85D6800C1850D /* api_document.md */,
 				52B9DBEC16F83CE4006AE12B /* Library */,
 				52B9DBE216F83CB1006AE12B /* Models */,
+				52FB7C5F1747FAA000BD06ED /* Views */,
 				52B9DB9716F8379B006AE12B /* DETodo */,
 				52B9DBBB16F8379B006AE12B /* DETodoTests */,
 				52B9DB9016F8379B006AE12B /* Frameworks */,
@@ -233,6 +240,17 @@
 			);
 			name = Library;
 			path = ../Library;
+			sourceTree = "<group>";
+		};
+		52FB7C5F1747FAA000BD06ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				52FB7C601747FAB700BD06ED /* DEListCell.h */,
+				52FB7C611747FAB700BD06ED /* DEListCell.m */,
+				52FB7C631747FCE000BD06ED /* DEItemCell.h */,
+				52FB7C641747FCE000BD06ED /* DEItemCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +379,8 @@
 				52155F0B16F8562F00C1850D /* DETodoViewController.m in Sources */,
 				522D905116FAE01F00C448BB /* DEAPIRequest.m in Sources */,
 				522D905416FAE02800C448BB /* DEAPIResponse.m in Sources */,
+				52FB7C621747FAB700BD06ED /* DEListCell.m in Sources */,
+				52FB7C651747FCE000BD06ED /* DEItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

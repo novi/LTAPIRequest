@@ -9,6 +9,7 @@
 #import "DETodoViewController.h"
 #import "DETodoList.h"
 #import "DETodoItem.h"
+#import "DEItemCell.h"
 
 @interface DETodoViewController ()
 
@@ -102,33 +103,15 @@
         return cell;
     } else if (indexPath.section == 1) {
         static NSString *CellIdentifier = @"Cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        if (![cell.accessoryView isKindOfClass:[UISwitch class]]) {
-            UISwitch* sw = [[UISwitch alloc] initWithFrame:CGRectZero];
-            [sw addTarget:self action:@selector(swChanged:) forControlEvents:UIControlEventValueChanged];
-            [sw sizeToFit];
-            cell.accessoryView = sw;
-        }
+        DEItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
         DETodoItem* item = [_todoList.todoItems objectAtIndex:indexPath.row];
-        cell.textLabel.text = item.title;
         
-        UISwitch* sw = (id)cell.accessoryView;
-        sw.on = item.isDone;
-        sw.tag = indexPath.row;
-        if(sw.on) {
-            cell.textLabel.textColor = [UIColor lightGrayColor];
-        } else {
-            cell.textLabel.textColor = [UIColor blackColor];
-        }
+        // View(Cell)にModelをセット
+        [cell setItem:item forIndex:indexPath.row];
         
-        // 作成中は切り替えできないように
-        if (item.isCreating) {
-            sw.enabled = NO;
-        } else {
-            sw.enabled = YES;
-        }
+        [cell.doneSwitch removeTarget:self action:NULL forControlEvents:UIControlEventValueChanged];
+        [cell.doneSwitch addTarget:self action:@selector(swChanged:) forControlEvents:UIControlEventValueChanged];
         
         return cell;
 
