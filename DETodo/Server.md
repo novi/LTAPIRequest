@@ -1,6 +1,6 @@
 ## DETodo Server
 
-`detodo-server` がAPIサーバーで、`test-server-node` がiOS側アプリテスト用のテストAPIサーバーです。
+`detodo-server` がAPIサーバーで、`test-server-node` がiOS側アプリテスト用のモックAPIサーバーです。
 Node.js と MongoDB が必要となりますので、実行するには先にインストールして起動しておいてください。
 OS X 環境へは、それぞれ、Homebrew または MacPorts で簡単にインストールできます。
 
@@ -19,15 +19,15 @@ OS X 環境へは、それぞれ、Homebrew または MacPorts で簡単にイ�
 
     $ npm install -g mocha
     
-Mocha.js をインストールして、
+で、 Mocha.js をインストールして、
 
     $ cd detodo-server
     $ npm install should
     $ mocha
 
-とします。
+とします。(`detodo-server` をあらかじめ立ち上げておいてください)
 
-`test-server-node` は app.js のみで構成されています。今回必要なAPIを実装して、
+モックサーバーである `test-server-node` は app.js のみで構成されています。今回必要なAPIを実装して、
 固定のJSONを返すようになっています。
 また、UIのデバッグ用にHTTPレスポンスを返すのを数秒遅らせています。
 

@@ -62,6 +62,7 @@
     [super viewDidAppear:animated];
     
     if ([DEUser isAuthenticated]) {
+        // ログイン済みなら左上をAdd Listボタンに
         UIBarButtonItem* addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addList:)];
         [self.navigationItem setLeftBarButtonItem:addItem animated:animated];
     }

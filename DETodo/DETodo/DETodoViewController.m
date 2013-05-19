@@ -21,7 +21,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // TodoItemが1つアップデートされたらそのRowをアップデートする
+        // TodoItemが1つアップデートされたらそのRowをリロードする
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoItemUpdated:) name:DETodoItemDidChangeNotification object:nil];
     }
     return self;
@@ -131,11 +131,11 @@
 
 - (void)swChanged:(UISwitch*)sender
 {
+    // Done状態の更新
     __weak DETodoItem* item = [_todoList.todoItems objectAtIndex:sender.tag];
     [item setDone:sender.on callback:^(BOOL success) {
         
     }];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,14 +152,18 @@
 
 #pragma mark -
 
+// 新規TodoItem追加
 - (IBAction)addTextFieldEnded:(UITextField *)sender
 {
     [sender resignFirstResponder];
     if (sender.text.length > 0) {
+        // Todo Item のModelを作成
         DETodoItem* item = [[DETodoItem alloc] initWithTitle:sender.text list:_todoList];
         sender.text = @"";
+        // リクエストを送る
         [_todoList addTodoItem:item callback:^(BOOL success, BOOL itemsChanged, NSIndexSet *insertedIndex) {
             if (insertedIndex) {
+                // 挿入された場所のTableを更新
                 [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:insertedIndex.firstIndex inSection:1]] withRowAnimation:UITableViewRowAnimationMiddle];
             } else if (itemsChanged) {
                 [self.tableView reloadData];
@@ -171,6 +175,7 @@
 
 - (void)todoItemUpdated:(NSNotification*)notif
 {
+    // Todo Item の値(isDoneなど)が更新されたらそのRowをリロード
     NSInteger index = [_todoList.todoItems indexOfObjectIdenticalTo:notif.object];
     if (index != NSNotFound) {
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];

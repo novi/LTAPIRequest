@@ -61,6 +61,7 @@ NSString* const DETodoItemDidChangeNotification = @"DETodoItemDidChangeNotificat
 {
     BOOL oldVal = self.isDone;
     [self setAttribute:@(done) forKey:@"done"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DETodoItemDidChangeNotification object:self];
     
     [[[DEAPIRequest alloc] initWithAPI:[NSString stringWithFormat:@"/list/%@/item/%@", self.list.ID, self.ID] method:LTAPIRequestMethodPUT params:@{@"done": @(done)}] sendRequestWithCallback:^(DEAPIResponse *res) {
         if (!res.success) {
