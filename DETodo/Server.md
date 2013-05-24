@@ -21,11 +21,15 @@ OS X 環境へは、それぞれ、Homebrew または MacPorts で簡単にイ�
     
 で、 Mocha.js をインストールして、
 
+    $ NODE_ENV=test node app
+    
+test 環境でサーバーを起動しておきます。テストを実行するには、
+
     $ cd detodo-server
     $ npm install should
     $ mocha
 
-とします。(`detodo-server` をあらかじめ立ち上げておいてください)
+とします。(#自動化したい)
 
 モックサーバーである `test-server-node` は app.js のみで構成されています。今回必要なAPIを実装して、
 固定のJSONを返すようになっています。
