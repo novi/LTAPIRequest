@@ -23,7 +23,7 @@
 typedef void(^LTModelGeneralCallback)(BOOL success);
 typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 
-@interface LTModel : NSObject
+@interface LTModel : NSObject<NSCoding>
 
 - (instancetype)init;
 @property (nonatomic, copy, readonly) NSString* ID;
@@ -37,9 +37,18 @@ typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 - (void)removeAllAttributes;
 - (NSDictionary*)attributes;
 
+@end
+
+
+@interface LTModel(ModelStore)
+
 // 同じIDのModelは同じインスタンスを使用する場合, サブクラスでオーバーライド
 - (instancetype)initWithID:(NSString*)ID;
 // 同じIDのModelは同じインスタンスを返す(まだ無ければ生成)
 + (instancetype)modelWithID:(NSString*)ID;
+
++ (void)encodeModelStore:(NSCoder*)aCoder;
++ (void)decodeModelStore:(NSCoder*)aDecoder;
+
 
 @end

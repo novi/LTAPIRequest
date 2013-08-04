@@ -28,6 +28,22 @@
 
 @implementation LTModel
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        _data = [NSMutableDictionary dictionaryWithDictionary:[aDecoder decodeObjectForKey:@"lt_data"]];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_data forKey:@"lt_data"];
+}
+
+#pragma mark -
+
 - (instancetype)init
 {
     self = [super init];
@@ -89,7 +105,9 @@
     }];
 }
 
-#pragma mark -
+@end
+
+@implementation LTModel(ModelStore)
 
 -(instancetype)initWithID:(NSString *)ID
 {
@@ -116,6 +134,11 @@
 
 +(instancetype)modelWithID:(NSString *)ID
 {
+    if (!ID) {
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"modelWithID: given ID is nil" userInfo:nil] raise];
+        return nil;
+    }
+    
     NSMutableDictionary* store = [self modelStoreForModelClass:[self class]];
     
     id model = [store objectForKey:ID];
@@ -124,6 +147,25 @@
         [store setObject:model forKey:ID];
     }
     return model;
+}
+
++ (void)encodeModelStore:(NSCoder*)aCoder
+{
+    NSString* key = [NSString stringWithFormat:@"lt_modelstore_for_%@", NSStringFromClass([self class])];
+    
+    [aCoder encodeObject:[self modelStoreForModelClass:[self class]] forKey:key];
+}
+
++ (void)decodeModelStore:(NSCoder*)aDecoder
+{
+    NSString* key = [NSString stringWithFormat:@"lt_modelstore_for_%@", NSStringFromClass([self class])];
+    
+    NSDictionary* dict = [[aDecoder decodeObjectForKey:key] mutableCopy];
+    if (dict) {
+        NSMutableDictionary* store = [self modelStoreForModelClass:[self class]];
+        [store removeAllObjects];
+        [store setDictionary:dict];
+    }
 }
 
 @end
