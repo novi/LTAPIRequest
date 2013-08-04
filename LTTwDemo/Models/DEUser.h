@@ -30,6 +30,8 @@
 - (void)refreshUserInfoWithCallback:(LTModelGeneralCallback)callback; // User の情報を取得 (Twitter API GET user/show)
 
 
+- (void)save;
+
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 // ViewController や View から見てプライベートなメソッド
 

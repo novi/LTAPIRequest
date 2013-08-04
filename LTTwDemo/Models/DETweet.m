@@ -26,6 +26,27 @@
     return nil;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _timeline = [aDecoder decodeObjectForKey:@"timeline"];
+        _byUser = [aDecoder decodeObjectForKey:@"byUser"];
+        NSLog(@"decode %@, %@", self, _timeline);
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    
+    [aCoder encodeConditionalObject:_timeline forKey:@"timeline"];
+    if (_byUser) {
+        [aCoder encodeConditionalObject:_byUser forKey:@"byUser"];
+    }
+}
+
 -(id)initWithData:(NSDictionary *)dict timeline:(DETimeline *)timeline
 {
     self = [super init];

@@ -9,6 +9,7 @@
 #import "LTModel.h"
 
 typedef NS_ENUM(NSUInteger, TimelineType) {
+    TimelineTypeInvalid,
     TimelineTypeHome,
     TimelineTypeUsers,
     TimelineTypeSearch,
@@ -26,7 +27,7 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 
 @property (nonatomic, readonly, copy) NSString* query; // 検索語 (self.type == TimelineTypeSearch 時)
 
-- (id)initSearchTimelineWithQuery:(NSString*)query;
+- (instancetype)initSearchTimelineWithQuery:(NSString*)query;
 
 // タイムラインを更新
 - (void)refreshWithCallback:(TimelineRefreshCallback)callback;
@@ -36,7 +37,7 @@ typedef void(^TimelineRefreshCallback)(BOOL success, NSIndexSet* insertedIndexSe
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
 // ViewController や View から見てプライベートなメソッド
-- (id)initWithType:(TimelineType)type user:(DEUser*)user;
+- (instancetype)initWithType:(TimelineType)type user:(DEUser*)user;
 - (void)setSearchQuery:(NSString*)query;
 
 @end

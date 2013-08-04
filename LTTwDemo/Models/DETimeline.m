@@ -29,7 +29,29 @@
     return nil;
 }
 
-- (id)initWithType:(TimelineType)type user:(DEUser *)user
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _tweets = [aDecoder decodeObjectForKey:@"tweets"];
+        _user = [aDecoder decodeObjectForKey:@"user"];
+        _type = [aDecoder decodeIntegerForKey:@"type"];
+        NSLog(@"decode %@, %@", self, _user);
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    
+    [aCoder encodeObject:_tweets forKey:@"tweets"];
+    [aCoder encodeConditionalObject:_user forKey:@"user"];
+    [aCoder encodeInteger:_type forKey:@"type"];
+}
+
+
+- (instancetype)initWithType:(TimelineType)type user:(DEUser *)user
 {
     self = [super init];
     if (self) {
@@ -45,7 +67,7 @@
     _query = query;
 }
 
--(id)initSearchTimelineWithQuery:(NSString *)query
+-(instancetype)initSearchTimelineWithQuery:(NSString *)query
 {
     typeof(self) obj = [self initWithType:TimelineTypeSearch user:[DEUser me]];
     [obj setSearchQuery:query];
@@ -118,6 +140,12 @@
         callback(YES, [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(oldCount, [response.statuses count])]);
     }];
 }
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, type:%d", [super description], self.type];
+}
+
 
 #pragma mark - Attributes
 

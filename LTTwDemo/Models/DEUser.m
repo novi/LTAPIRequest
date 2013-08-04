@@ -20,13 +20,34 @@
 
 @implementation DEUser
 
++ (NSString*)cacheFilePath
+{
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString* base = [paths objectAtIndex:0];
+    return [base stringByAppendingPathComponent:@"default_v1.data"];
+}
+
 
 +(DEUser *)me
 {
     static DEUser* me;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        me = [[self alloc] initWithID:nil];
+        // キャッシュを読み込む
+        NSData* data = [NSData dataWithContentsOfFile:[self cacheFilePath]];
+        // 読み込んだので削除
+        [[NSFileManager defaultManager] removeItemAtPath:[self cacheFilePath] error:nil];
+        // デコード
+        NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        DEUser* storedUser = [unarchiver decodeObjectForKey:@"user"];
+        if (storedUser) {
+            [self decodeModelStore:unarchiver];
+            me = storedUser;
+        } else {
+            me = [[self alloc] initWithID:nil];
+        }
+        // バックグラウンド時にsave
+        [[NSNotificationCenter defaultCenter] addObserver:me selector:@selector(save) name:UIApplicationDidEnterBackgroundNotification object:nil];
     });
     return me;
 }
@@ -43,6 +64,42 @@
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _homeTimeline = [aDecoder decodeObjectForKey:@"homeTimeline"];
+        _usersTimeline = [aDecoder decodeObjectForKey:@"usersTimeline"];
+        NSLog(@"decode %@, %@, %@", self, _homeTimeline, _usersTimeline);
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    
+    [aCoder encodeObject:_homeTimeline forKey:@"homeTimeline"];
+    [aCoder encodeObject:_usersTimeline forKey:@"usersTimeline"];
+}
+
+- (void)save
+{
+    NSLog(@"saved");
+    
+    NSMutableData* data = [NSMutableData data];
+    NSKeyedArchiver* archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    [[self class] encodeModelStore:archiver];
+    [archiver encodeObject:self forKey:@"user"];
+    
+    [archiver finishEncoding];
+    
+    [data writeToFile:[[self class] cacheFilePath] atomically:NO];
+}
+
+
 
 // 指定イニシャライザ, 同じ ID の User は同じインスタンスを使うためこれが呼ばれる
 - (id)initWithID:(NSString *)ID
