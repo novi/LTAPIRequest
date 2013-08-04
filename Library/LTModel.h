@@ -25,7 +25,7 @@ typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 
 @interface LTModel : NSObject
 
-- (id)init;
+- (instancetype)init;
 @property (nonatomic, copy, readonly) NSString* ID;
 
 // Model の属性を set/get する, 引数はすべて nil 以外, サブクラスのみから呼ぶ(ViewやViewControllerに対してはPrivate)
@@ -38,13 +38,8 @@ typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 - (NSDictionary*)attributes;
 
 // 同じIDのModelは同じインスタンスを使用する場合, サブクラスでオーバーライド
-- (id)initWithID:(NSString*)ID;
+- (instancetype)initWithID:(NSString*)ID;
 // 同じIDのModelは同じインスタンスを返す(まだ無ければ生成)
-+ (id)modelWithID:(NSString*)ID;
-
-// TODO: 
-// LTStorableModel, キャッシュ付き
-//- (NSMutableDictionary*)dictionaryRepresentation;
-//- (void)restoreFromDictionaryRepresentation:(NSDictionary*)dict;
++ (instancetype)modelWithID:(NSString*)ID;
 
 @end

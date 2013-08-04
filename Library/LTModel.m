@@ -28,7 +28,7 @@
 
 @implementation LTModel
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -39,7 +39,7 @@
 
 -(NSString *)ID
 {
-    return [self attributeForKey:@"id"];
+    return [[self attributeForKey:@"id"] copy];
 }
 
 #pragma mark - Attributes management
@@ -72,7 +72,7 @@
 -(void)replaceAttributesFromDictionary:(NSDictionary *)dict
 {
     if (!dict) {
-        [[NSException exceptionWithName:NSGenericException reason:@"replaceAttributesFromDictionary: given dictionary is nil" userInfo:nil] raise];
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"replaceAttributesFromDictionary: given dictionary is nil" userInfo:nil] raise];
         return;
     }
     _data = [dict mutableCopy];
@@ -81,7 +81,7 @@
 -(void)mergeAttributesFromDictionary:(NSDictionary *)dict
 {
     if (!dict) {
-        [[NSException exceptionWithName:NSGenericException reason:@"mergeAttributesFromDictionary: given dictionary is nil" userInfo:nil] raise];
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"mergeAttributesFromDictionary: given dictionary is nil" userInfo:nil] raise];
         return;
     }
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -91,7 +91,7 @@
 
 #pragma mark -
 
--(id)initWithID:(NSString *)ID
+-(instancetype)initWithID:(NSString *)ID
 {
     [[NSException exceptionWithName:NSGenericException reason:@"initWithID: should be overidden on subclass" userInfo:nil] raise];
     return nil;
@@ -114,7 +114,7 @@
     return store;
 }
 
-+(id)modelWithID:(NSString *)ID
++(instancetype)modelWithID:(NSString *)ID
 {
     NSMutableDictionary* store = [self modelStoreForModelClass:[self class]];
     
