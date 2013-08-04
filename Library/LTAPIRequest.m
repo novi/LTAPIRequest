@@ -143,19 +143,14 @@ static int networkCount = 0;
 
 +(void)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSURLResponse *, NSData *, NSError *))handler
 {
-    if ([NSThread mainThread] != [NSThread currentThread]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self lt_sendAsynchronousRequest:request queue:queue completionHandler:handler];
-        });
-        return;
-    }
-
-    [queue addOperationWithBlock:^{
-        NSURLResponse* res = nil;
-        NSError* error = nil;
-        NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&error];
-        handler(res, data, error);
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [queue addOperationWithBlock:^{
+            NSURLResponse* res = nil;
+            NSError* error = nil;
+            NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&res error:&error];
+            handler(res, data, error);
+        }];
+    });
 }
 
 +(NSOperationQueue *)imageRequestQueue
