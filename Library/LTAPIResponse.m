@@ -19,11 +19,16 @@
 //
 
 #import "LTAPIResponse.h"
+#import "LTAPIRequest.h"
 
 @implementation LTAPIResponse
 
 -(NSError *)parseJSON
 {
+    if (!_responseData) {
+        _json = nil;
+        return [NSError errorWithDomain:NSStringFromClass([LTAPIRequest class]) code:1 userInfo:@{NSLocalizedFailureReasonErrorKey: @"response data is nil"}];
+    }
     NSError* error = nil;
     _json = (id)[NSJSONSerialization JSONObjectWithData:_responseData options:0 error:&error];
     return error;
