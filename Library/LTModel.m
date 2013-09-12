@@ -20,6 +20,9 @@
 
 #import "LTModel.h"
 
+static NSString* const LTModelClassName = @"LTModel";
+
+
 @interface LTModel ()
 {
     NSMutableDictionary* _data;
@@ -151,6 +154,10 @@
 
 + (void)encodeModelStore:(NSCoder*)aCoder
 {
+    if ([NSStringFromClass(self) isEqualToString:LTModelClassName]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"should be encoded with LTModel's subclass(your model)" userInfo:nil] raise];
+        return;
+    }
     NSString* key = [NSString stringWithFormat:@"lt_modelstore_for_%@", NSStringFromClass([self class])];
     
     [aCoder encodeObject:[self modelStoreForModelClass:[self class]] forKey:key];
@@ -158,6 +165,11 @@
 
 + (void)decodeModelStore:(NSCoder*)aDecoder
 {
+    if ([NSStringFromClass(self) isEqualToString:LTModelClassName]) {
+        [[NSException exceptionWithName:NSGenericException reason:@"should be encoded with LTModel's subclass(your model)" userInfo:nil] raise];
+        return;
+    }
+    
     NSString* key = [NSString stringWithFormat:@"lt_modelstore_for_%@", NSStringFromClass([self class])];
     
     NSDictionary* dict = [[aDecoder decodeObjectForKey:key] mutableCopy];
