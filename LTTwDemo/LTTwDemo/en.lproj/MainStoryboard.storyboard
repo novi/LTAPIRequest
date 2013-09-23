@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--First View Controller-->
@@ -13,9 +15,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlU-CX-QSb">
+                                <rect key="frame" x="86" y="98" width="148" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Login with Twitter">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -28,7 +31,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SlU-CX-QSb" firstAttribute="top" secondItem="gXy-T4-rqu" secondAttribute="top" constant="20" symbolic="YES" type="default" id="LJl-yD-dUL"/>
+                            <constraint firstItem="SlU-CX-QSb" firstAttribute="top" secondItem="gXy-T4-rqu" secondAttribute="top" constant="98" id="dtJ-nB-TBB"/>
                             <constraint firstItem="SlU-CX-QSb" firstAttribute="centerX" secondItem="gXy-T4-rqu" secondAttribute="centerX" type="default" id="zT3-R8-QBF"/>
                         </constraints>
                     </view>
@@ -58,11 +61,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgr-n3-aSb">
+                                            <rect key="frame" x="46" y="6" width="26" height="17"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ6-Ua-VbB">
+                                            <rect key="frame" x="46" y="23" width="32" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,6 +129,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="node.js lang:ja" borderStyle="roundedRect" placeholder="Search Twitter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-E9-7U5">
+                                <rect key="frame" x="20" y="102" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -131,6 +137,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="検索する前にログインしてください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTW-jk-yhm">
+                                <rect key="frame" x="24" y="167" width="272" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="272" id="nLw-D7-1zQ"/>
                                     <constraint firstAttribute="height" constant="21" id="sCI-dM-aCs"/>
@@ -144,9 +151,9 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="x5z-E9-7U5" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="0RJ-in-qAk"/>
-                            <constraint firstItem="hTW-jk-yhm" firstAttribute="top" secondItem="17" secondAttribute="top" constant="85" id="5If-0Q-xUe"/>
+                            <constraint firstItem="x5z-E9-7U5" firstAttribute="top" secondItem="17" secondAttribute="top" constant="102" id="5Mn-MQ-0UY"/>
                             <constraint firstItem="x5z-E9-7U5" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9d0-yc-2UM"/>
-                            <constraint firstItem="x5z-E9-7U5" firstAttribute="top" secondItem="17" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ZlQ-Dd-9GZ"/>
+                            <constraint firstItem="hTW-jk-yhm" firstAttribute="top" secondItem="17" secondAttribute="top" constant="167" id="tuM-Hr-Eqb"/>
                             <constraint firstItem="hTW-jk-yhm" firstAttribute="centerX" secondItem="x5z-E9-7U5" secondAttribute="centerX" type="default" id="wni-7O-2Nu"/>
                         </constraints>
                         <connections>
@@ -194,34 +201,12 @@
         <image name="second" width="16" height="16"/>
         <image name="second.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="login:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="searchFieldEditEnded:" candidateClass="UITextField"/>
-                <relationship kind="action" name="viewTapped:"/>
-                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TimelineViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimelineViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5IR-ds-EYd"/>
+        <segue reference="HEh-T4-UzI"/>
     </inferredMetricsTieBreakers>
 </document>

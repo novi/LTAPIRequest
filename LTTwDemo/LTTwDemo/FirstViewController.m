@@ -34,6 +34,10 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 2つ以上のアカウントがある場合どちらかが適当に選択される
                 ACAccount* account = [[store accounts] lastObject];
+                if (!account) {
+                    sender.enabled = YES;
+                    return (void)[[[UIAlertView alloc] initWithTitle:@"no twitter account." message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+                }
                 NSLog(@"%@", account);
                 DEUser* me = [DEUser me];
                 me.account = account;
