@@ -104,7 +104,7 @@ static NSString* const LTModelClassName = @"LTModel";
         return;
     }
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [_data setObject:obj forKey:key];
+        [_data setObject:obj forKey:[key copy]];
     }];
 }
 
