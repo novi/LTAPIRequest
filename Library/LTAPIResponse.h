@@ -40,6 +40,6 @@
 - (void)showErrorAlert; // リクエスト用の Queue で呼ばれるので注意
 
 // +-+-+-+-+-+-+ Private +-+-+-+-+-+-+ //
-- (NSError*)parseJSON; // if retuns nil, success, JSONパース後何かしたい場合はオーバーライドする, パース用の Queue で呼ばれるので注意
+- (NSError*)parseJSON __attribute__((objc_requires_super)); // if retuns nil, success, JSONパース後何かしたい場合はオーバーライドする, パース用の Queue で呼ばれるので注意
 
 @end

@@ -15,8 +15,7 @@
 #pragma mark -
 // オーバーライド
 
-/*
- パース後処理, 任意, コメントを外す
+//パース後処理, 任意, コメントを外す
 -(NSError *)parseJSON
 {
     NSError* parseError = [super parseJSON];
@@ -27,7 +26,7 @@
     }
     return parseError;
 }
-*/
+
 
 -(BOOL)success
 {
