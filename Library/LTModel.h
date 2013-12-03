@@ -36,6 +36,7 @@ typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 - (void)removeAttributeForKey:(NSString*)key;
 - (void)removeAllAttributes;
 - (NSDictionary*)attributes;
+- (NSString*)IDKey;
 
 @end
 

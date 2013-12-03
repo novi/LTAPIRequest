@@ -56,9 +56,14 @@ static NSString* const LTModelClassName = @"LTModel";
     return self;
 }
 
+- (NSString*)IDKey
+{
+    return @"id";
+}
+
 -(NSString *)ID
 {
-    return [[self attributeForKey:@"id"] copy];
+    return [[self attributeForKey:[self IDKey]] copy];
 }
 
 #pragma mark - Attributes management
