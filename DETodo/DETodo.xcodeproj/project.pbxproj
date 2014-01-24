@@ -12,6 +12,9 @@
 		522D905116FAE01F00C448BB /* DEAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D905016FAE01F00C448BB /* DEAPIRequest.m */; };
 		522D905416FAE02800C448BB /* DEAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D905316FAE02800C448BB /* DEAPIResponse.m */; };
 		5266BB7A16FEEBE3001CC1EE /* Server.md in Resources */ = {isa = PBXBuildFile; fileRef = 5266BB7916FEEBE3001CC1EE /* Server.md */; };
+		52AC85DE189277EB003E9EE0 /* LTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85D9189277EB003E9EE0 /* LTAPIRequest.m */; };
+		52AC85DF189277EB003E9EE0 /* LTAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85DB189277EB003E9EE0 /* LTAPIResponse.m */; };
+		52AC85E0189277EB003E9EE0 /* LTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85DD189277EB003E9EE0 /* LTModel.m */; };
 		52B9DB9216F8379B006AE12B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B9DB9116F8379B006AE12B /* UIKit.framework */; };
 		52B9DB9416F8379B006AE12B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B9DB9316F8379B006AE12B /* Foundation.framework */; };
 		52B9DB9616F8379B006AE12B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B9DB9516F8379B006AE12B /* CoreGraphics.framework */; };
@@ -32,9 +35,6 @@
 		52B9DBE516F83CBC006AE12B /* DEUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBE416F83CBC006AE12B /* DEUser.m */; };
 		52B9DBE816F83CC7006AE12B /* DETodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBE716F83CC7006AE12B /* DETodoList.m */; };
 		52B9DBEB16F83CD5006AE12B /* DETodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBEA16F83CD5006AE12B /* DETodoItem.m */; };
-		52B9DBF316F83CE4006AE12B /* LTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBEE16F83CE4006AE12B /* LTAPIRequest.m */; };
-		52B9DBF416F83CE4006AE12B /* LTAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBF016F83CE4006AE12B /* LTAPIResponse.m */; };
-		52B9DBF516F83CE4006AE12B /* LTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBF216F83CE4006AE12B /* LTModel.m */; };
 		52FB7C621747FAB700BD06ED /* DEListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB7C611747FAB700BD06ED /* DEListCell.m */; };
 		52FB7C651747FCE000BD06ED /* DEItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FB7C641747FCE000BD06ED /* DEItemCell.m */; };
 /* End PBXBuildFile section */
@@ -59,6 +59,12 @@
 		522D905216FAE02800C448BB /* DEAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPIResponse.h; sourceTree = "<group>"; };
 		522D905316FAE02800C448BB /* DEAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPIResponse.m; sourceTree = "<group>"; };
 		5266BB7916FEEBE3001CC1EE /* Server.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Server.md; sourceTree = "<group>"; };
+		52AC85D8189277EB003E9EE0 /* LTAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIRequest.h; sourceTree = "<group>"; };
+		52AC85D9189277EB003E9EE0 /* LTAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIRequest.m; sourceTree = "<group>"; };
+		52AC85DA189277EB003E9EE0 /* LTAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIResponse.h; sourceTree = "<group>"; };
+		52AC85DB189277EB003E9EE0 /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
+		52AC85DC189277EB003E9EE0 /* LTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTModel.h; sourceTree = "<group>"; };
+		52AC85DD189277EB003E9EE0 /* LTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTModel.m; sourceTree = "<group>"; };
 		52B9DB8E16F8379B006AE12B /* DETodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DETodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B9DB9116F8379B006AE12B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52B9DB9316F8379B006AE12B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,12 +95,6 @@
 		52B9DBE716F83CC7006AE12B /* DETodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DETodoList.m; sourceTree = "<group>"; };
 		52B9DBE916F83CD5006AE12B /* DETodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DETodoItem.h; sourceTree = "<group>"; };
 		52B9DBEA16F83CD5006AE12B /* DETodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DETodoItem.m; sourceTree = "<group>"; };
-		52B9DBED16F83CE4006AE12B /* LTAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIRequest.h; sourceTree = "<group>"; };
-		52B9DBEE16F83CE4006AE12B /* LTAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIRequest.m; sourceTree = "<group>"; };
-		52B9DBEF16F83CE4006AE12B /* LTAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIResponse.h; sourceTree = "<group>"; };
-		52B9DBF016F83CE4006AE12B /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
-		52B9DBF116F83CE4006AE12B /* LTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTModel.h; sourceTree = "<group>"; };
-		52B9DBF216F83CE4006AE12B /* LTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTModel.m; sourceTree = "<group>"; };
 		52FB7C601747FAB700BD06ED /* DEListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEListCell.h; sourceTree = "<group>"; };
 		52FB7C611747FAB700BD06ED /* DEListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEListCell.m; sourceTree = "<group>"; };
 		52FB7C631747FCE000BD06ED /* DEItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEItemCell.h; sourceTree = "<group>"; };
@@ -125,12 +125,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52AC85D7189277EB003E9EE0 /* LTAPIRequest */ = {
+			isa = PBXGroup;
+			children = (
+				52AC85D8189277EB003E9EE0 /* LTAPIRequest.h */,
+				52AC85D9189277EB003E9EE0 /* LTAPIRequest.m */,
+				52AC85DA189277EB003E9EE0 /* LTAPIResponse.h */,
+				52AC85DB189277EB003E9EE0 /* LTAPIResponse.m */,
+				52AC85DC189277EB003E9EE0 /* LTModel.h */,
+				52AC85DD189277EB003E9EE0 /* LTModel.m */,
+			);
+			name = LTAPIRequest;
+			path = ../LTAPIRequest;
+			sourceTree = "<group>";
+		};
 		52B9DB8516F8379B006AE12B = {
 			isa = PBXGroup;
 			children = (
 				5266BB7916FEEBE3001CC1EE /* Server.md */,
 				52155F0C16F85D6800C1850D /* api_document.md */,
-				52B9DBEC16F83CE4006AE12B /* Library */,
+				52AC85D7189277EB003E9EE0 /* LTAPIRequest */,
 				52B9DBE216F83CB1006AE12B /* Models */,
 				52FB7C5F1747FAA000BD06ED /* Views */,
 				52B9DB9716F8379B006AE12B /* DETodo */,
@@ -226,20 +240,6 @@
 				522D905316FAE02800C448BB /* DEAPIResponse.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		52B9DBEC16F83CE4006AE12B /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				52B9DBED16F83CE4006AE12B /* LTAPIRequest.h */,
-				52B9DBEE16F83CE4006AE12B /* LTAPIRequest.m */,
-				52B9DBEF16F83CE4006AE12B /* LTAPIResponse.h */,
-				52B9DBF016F83CE4006AE12B /* LTAPIResponse.m */,
-				52B9DBF116F83CE4006AE12B /* LTModel.h */,
-				52B9DBF216F83CE4006AE12B /* LTModel.m */,
-			);
-			name = Library;
-			path = ../Library;
 			sourceTree = "<group>";
 		};
 		52FB7C5F1747FAA000BD06ED /* Views */ = {
@@ -366,19 +366,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52AC85E0189277EB003E9EE0 /* LTModel.m in Sources */,
 				52B9DB9E16F8379B006AE12B /* main.m in Sources */,
 				52B9DBA216F8379B006AE12B /* DEAppDelegate.m in Sources */,
 				52B9DBDE16F8399B006AE12B /* DELoginViewController.m in Sources */,
 				52B9DBE116F839AE006AE12B /* DETodoListViewController.m in Sources */,
 				52B9DBE516F83CBC006AE12B /* DEUser.m in Sources */,
 				52B9DBE816F83CC7006AE12B /* DETodoList.m in Sources */,
+				52AC85DE189277EB003E9EE0 /* LTAPIRequest.m in Sources */,
 				52B9DBEB16F83CD5006AE12B /* DETodoItem.m in Sources */,
-				52B9DBF316F83CE4006AE12B /* LTAPIRequest.m in Sources */,
-				52B9DBF416F83CE4006AE12B /* LTAPIResponse.m in Sources */,
-				52B9DBF516F83CE4006AE12B /* LTModel.m in Sources */,
 				52155F0B16F8562F00C1850D /* DETodoViewController.m in Sources */,
 				522D905116FAE01F00C448BB /* DEAPIRequest.m in Sources */,
 				522D905416FAE02800C448BB /* DEAPIResponse.m in Sources */,
+				52AC85DF189277EB003E9EE0 /* LTAPIResponse.m in Sources */,
 				52FB7C621747FAB700BD06ED /* DEListCell.m in Sources */,
 				52FB7C651747FCE000BD06ED /* DEItemCell.m in Sources */,
 			);

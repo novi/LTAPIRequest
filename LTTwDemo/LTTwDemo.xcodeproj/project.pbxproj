@@ -28,12 +28,12 @@
 		5272E68A16F4489E00AAC03E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5272E65A16F4489D00AAC03E /* Foundation.framework */; };
 		5272E69216F4489E00AAC03E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5272E69016F4489E00AAC03E /* InfoPlist.strings */; };
 		5272E69516F4489E00AAC03E /* LTTwDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E69416F4489E00AAC03E /* LTTwDemoTests.m */; };
-		5272E6A216F4496300AAC03E /* LTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E6A116F4496300AAC03E /* LTAPIRequest.m */; };
-		5272E6A516F4499400AAC03E /* LTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E6A416F4499400AAC03E /* LTModel.m */; };
 		5272E6B416F4583700AAC03E /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E6B316F4583700AAC03E /* TimelineViewController.m */; };
 		5272E6B616F4588E00AAC03E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5272E6B516F4588E00AAC03E /* Social.framework */; };
 		5272E6B816F4596F00AAC03E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5272E6B716F4596F00AAC03E /* Accounts.framework */; };
-		5272E6BE16F4811700AAC03E /* LTAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272E6BD16F4811700AAC03E /* LTAPIResponse.m */; };
+		52AC85E818927802003E9EE0 /* LTAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85E318927802003E9EE0 /* LTAPIRequest.m */; };
+		52AC85E918927802003E9EE0 /* LTAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85E518927802003E9EE0 /* LTAPIResponse.m */; };
+		52AC85EA18927802003E9EE0 /* LTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC85E718927802003E9EE0 /* LTModel.m */; };
 		52B9DBD716F837B6006AE12B /* DEAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBCE16F837B6006AE12B /* DEAPIRequest.m */; };
 		52B9DBD816F837B6006AE12B /* DEAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBD016F837B6006AE12B /* DEAPIResponse.m */; };
 		52B9DBD916F837B6006AE12B /* DETimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B9DBD216F837B6006AE12B /* DETimeline.m */; };
@@ -80,17 +80,17 @@
 		5272E69116F4489E00AAC03E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5272E69316F4489E00AAC03E /* LTTwDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTTwDemoTests.h; sourceTree = "<group>"; };
 		5272E69416F4489E00AAC03E /* LTTwDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTwDemoTests.m; sourceTree = "<group>"; };
-		5272E6A016F4496300AAC03E /* LTAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIRequest.h; sourceTree = "<group>"; };
-		5272E6A116F4496300AAC03E /* LTAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIRequest.m; sourceTree = "<group>"; };
-		5272E6A316F4499400AAC03E /* LTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTModel.h; sourceTree = "<group>"; };
-		5272E6A416F4499400AAC03E /* LTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTModel.m; sourceTree = "<group>"; };
 		5272E6B216F4583700AAC03E /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		5272E6B316F4583700AAC03E /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		5272E6B516F4588E00AAC03E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5272E6B716F4596F00AAC03E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		5272E6BC16F4811700AAC03E /* LTAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIResponse.h; sourceTree = "<group>"; };
-		5272E6BD16F4811700AAC03E /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
 		529CEB2716F605C200BDA48A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		52AC85E218927802003E9EE0 /* LTAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIRequest.h; sourceTree = "<group>"; };
+		52AC85E318927802003E9EE0 /* LTAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIRequest.m; sourceTree = "<group>"; };
+		52AC85E418927802003E9EE0 /* LTAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAPIResponse.h; sourceTree = "<group>"; };
+		52AC85E518927802003E9EE0 /* LTAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAPIResponse.m; sourceTree = "<group>"; };
+		52AC85E618927802003E9EE0 /* LTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTModel.h; sourceTree = "<group>"; };
+		52AC85E718927802003E9EE0 /* LTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTModel.m; sourceTree = "<group>"; };
 		52B9DBCD16F837B6006AE12B /* DEAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPIRequest.h; sourceTree = "<group>"; };
 		52B9DBCE16F837B6006AE12B /* DEAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPIRequest.m; sourceTree = "<group>"; };
 		52B9DBCF16F837B6006AE12B /* DEAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPIResponse.h; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				529CEB2716F605C200BDA48A /* README.md */,
-				5272E69E16F4493400AAC03E /* Library */,
+				52AC85E118927802003E9EE0 /* LTAPIRequest */,
 				52B9DBCC16F837B6006AE12B /* Models */,
 				5272E65E16F4489D00AAC03E /* LTTwDemo */,
 				5272E68D16F4489E00AAC03E /* LTTwDemoTests */,
@@ -218,18 +218,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5272E69E16F4493400AAC03E /* Library */ = {
+		52AC85E118927802003E9EE0 /* LTAPIRequest */ = {
 			isa = PBXGroup;
 			children = (
-				5272E6A316F4499400AAC03E /* LTModel.h */,
-				5272E6A416F4499400AAC03E /* LTModel.m */,
-				5272E6A016F4496300AAC03E /* LTAPIRequest.h */,
-				5272E6A116F4496300AAC03E /* LTAPIRequest.m */,
-				5272E6BC16F4811700AAC03E /* LTAPIResponse.h */,
-				5272E6BD16F4811700AAC03E /* LTAPIResponse.m */,
+				52AC85E218927802003E9EE0 /* LTAPIRequest.h */,
+				52AC85E318927802003E9EE0 /* LTAPIRequest.m */,
+				52AC85E418927802003E9EE0 /* LTAPIResponse.h */,
+				52AC85E518927802003E9EE0 /* LTAPIResponse.m */,
+				52AC85E618927802003E9EE0 /* LTModel.h */,
+				52AC85E718927802003E9EE0 /* LTModel.m */,
 			);
-			name = Library;
-			path = ../Library;
+			name = LTAPIRequest;
+			path = ../LTAPIRequest;
 			sourceTree = "<group>";
 		};
 		52B9DBCC16F837B6006AE12B /* Models */ = {
@@ -367,15 +367,15 @@
 				5272E66916F4489D00AAC03E /* AppDelegate.m in Sources */,
 				5272E67516F4489E00AAC03E /* FirstViewController.m in Sources */,
 				5272E67C16F4489E00AAC03E /* SecondViewController.m in Sources */,
-				5272E6A216F4496300AAC03E /* LTAPIRequest.m in Sources */,
-				5272E6A516F4499400AAC03E /* LTModel.m in Sources */,
 				5272E6B416F4583700AAC03E /* TimelineViewController.m in Sources */,
-				5272E6BE16F4811700AAC03E /* LTAPIResponse.m in Sources */,
 				52B9DBD716F837B6006AE12B /* DEAPIRequest.m in Sources */,
 				52B9DBD816F837B6006AE12B /* DEAPIResponse.m in Sources */,
 				52B9DBD916F837B6006AE12B /* DETimeline.m in Sources */,
+				52AC85E818927802003E9EE0 /* LTAPIRequest.m in Sources */,
 				52B9DBDA16F837B6006AE12B /* DETweet.m in Sources */,
 				52B9DBDB16F837B6006AE12B /* DEUser.m in Sources */,
+				52AC85E918927802003E9EE0 /* LTAPIResponse.m in Sources */,
+				52AC85EA18927802003E9EE0 /* LTModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
