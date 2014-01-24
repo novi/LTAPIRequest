@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define LTAPIRequestDebug (1)
+//#define LTAPIRequestDebug (1)
 
 typedef NS_ENUM(NSUInteger, LTAPIRequestMethod) {
     LTAPIRequestMethodInvalid = 0,

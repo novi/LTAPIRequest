@@ -81,25 +81,24 @@ static int networkCount = 0;
         _response = res;
         if (!res.success) {
             [res showErrorAlert];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            return dispatch_async(dispatch_get_main_queue(), ^{
                 LTAPIRequestDebugLog(@"Request failed: %@", res);
-                callback(res);
+                return callback(res);
             });
-            return;
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSError* error = [res parseJSON];
             if (error) {
                 res.parseError = error;
                 [res showErrorAlert];
-                dispatch_async(dispatch_get_main_queue(), ^{
+                return dispatch_async(dispatch_get_main_queue(), ^{
                     LTAPIRequestDebugLog(@"Parse Error: %@", res);
-                    callback(res);
+                    return callback(res);
                 });
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
+                return dispatch_async(dispatch_get_main_queue(), ^{
                     LTAPIRequestDebugLog(@"JSON: %@", res.json);
-                    callback(res);
+                    return callback(res);
                 });
             }
         });
