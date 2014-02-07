@@ -52,5 +52,6 @@ typedef void(^LTModelCollectionCallback)(BOOL success, BOOL collectionChanged);
 + (void)encodeModelStore:(NSCoder*)aCoder;
 + (void)decodeModelStore:(NSCoder*)aDecoder;
 
++ (void)clearAllModelStore; // remove all caches
 
 @end

@@ -20,6 +20,7 @@
 
 #import "LTModel.h"
 
+static NSMutableDictionary* g_lt_allStore;
 static NSString* const LTModelClassName = @"LTModel";
 
 
@@ -125,17 +126,16 @@ static NSString* const LTModelClassName = @"LTModel";
 
 + (NSMutableDictionary*)modelStoreForModelClass:(Class)class
 {
-    static NSMutableDictionary* allStore;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        allStore = [NSMutableDictionary dictionary];
+        g_lt_allStore = [NSMutableDictionary dictionary];
     });
     
     NSString* key = NSStringFromClass(class);
-    NSMutableDictionary* store = [allStore objectForKey:key];
+    NSMutableDictionary* store = [g_lt_allStore objectForKey:key];
     if (!store) {
         store = [NSMutableDictionary dictionary];
-        [allStore setObject:store forKey:key];
+        [g_lt_allStore setObject:store forKey:key];
     }
     return store;
 }
@@ -184,5 +184,11 @@ static NSString* const LTModelClassName = @"LTModel";
         [store setDictionary:dict];
     }
 }
+
++(void)clearAllModelStore
+{
+    [g_lt_allStore removeAllObjects];
+}
+
 
 @end
