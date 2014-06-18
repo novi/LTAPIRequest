@@ -65,13 +65,14 @@ static int networkCount = 0;
 
 #pragma mark - API
 
--(void)sendRequestWithCallback:(LTAPIRequestCallback)callback
+-(id)sendRequestWithCallback:(LTAPIRequestCallback)callback
 {
     _request = [self prepareRequest];
     LTAPIRequestDebugLog(@"%@", [self descriptionWithRequest:_request]);
     
     [[self class] beginNetworkConnection];
-    [[self class] lt_sendAsynchronousRequest:_request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
+    
+    return [[self class] lt_sendAsynchronousRequest:_request queue:[[self class] APIRequestQueue] completionHandler:^(NSURLResponse * urlResponse, NSData * responseData, NSError *error) {
         [[self class] endNetworkConnection];
         LTAPIResponse* res = [[[[self class] APIResponseClass] alloc] init];
         res.responseData = responseData;
@@ -140,7 +141,7 @@ static int networkCount = 0;
 
 #pragma mark -
 
-+(void)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSURLResponse *, NSData *, NSError *))handler
++(id)lt_sendAsynchronousRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue completionHandler:(void (^)(NSURLResponse *, NSData *, NSError *))handler
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [queue addOperationWithBlock:^{
@@ -150,6 +151,8 @@ static int networkCount = 0;
             handler(res, data, error);
         }];
     });
+    
+    return nil;
 }
 
 +(NSOperationQueue *)imageRequestQueue
